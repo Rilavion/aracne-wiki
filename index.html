@@ -10,26 +10,39 @@ body { font-family: system-ui, sans-serif; background: #0d1117; color: #c9d1d9; 
 a { color: #58a6ff; }
 
 /* SIDEBAR */
-.sidebar { width: 200px; background: #161b22; border-right: 1px solid #30363d; padding: 1rem; position: fixed; height: 100vh; overflow-y: auto; }
-.sidebar h1 { font-size: 0.95rem; margin-bottom: 0.75rem; color: #58a6ff; }
-.toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; cursor: pointer; font-size: 0.85rem; color: #8b949e; }
+.sidebar { width: 220px; background: #161b22; border-right: 1px solid #30363d; padding: 1rem; position: fixed; height: 100vh; overflow-y: auto; }
+.sidebar h1 { font-size: 1rem; margin-bottom: 0.75rem; color: #58a6ff; }
+.toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; cursor: pointer; font-size: 0.9rem; color: #8b949e; }
 .toggle input { width: 16px; height: 16px; accent-color: #3fb950; }
-.nav a { display: block; padding: 7px 10px; color: #8b949e; text-decoration: none; border-radius: 6px; margin-bottom: 3px; font-size: 0.85rem; }
+.nav a { display: block; padding: 8px 12px; color: #8b949e; text-decoration: none; border-radius: 6px; margin-bottom: 4px; font-size: 0.9rem; }
 .nav a:hover { background: #21262d; color: #fff; }
 .nav a.active { background: rgba(88, 166, 255, 0.15); color: #58a6ff; }
 
 /* CONTENT */
-.content { margin-left: 200px; padding: 1rem 1.5rem; }
-.section { margin-bottom: 1.5rem; }
-h2 { font-size: 1rem; color: #58a6ff; margin-bottom: 0.75rem; border-bottom: 1px solid #30363d; padding-bottom: 6px; }
-h3 { font-size: 0.9rem; color: #8b949e; margin: 1rem 0 0.5rem; }
+.content { margin-left: 220px; padding: 1.5rem 2rem; max-width: 1200px; }
+.section { margin-bottom: 2rem; }
+h2 { font-size: 1.2rem; color: #58a6ff; margin-bottom: 1rem; border-bottom: 1px solid #30363d; padding-bottom: 8px; }
+h3 { font-size: 1rem; color: #8b949e; margin: 1rem 0 0.5rem; }
 
-/* CODE CARDS */
-.code-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px; margin-bottom: 1rem; }
-.code-card { background: #21262d; border: 1px solid #30363d; border-radius: 6px; overflow: hidden; }
-.code-header { padding: 6px 10px; font-weight: 600; font-size: 0.85rem; }
-.code-info { padding: 6px 10px; }
-.code-info p { font-size: 0.75rem; color: #8b949e; margin-bottom: 2px; }
+/* INFO BOX */
+.info-box { background: #21262d; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; font-size: 0.95rem; }
+.info-box strong { color: #3fb950; }
+.info-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.info-item { padding: 5px 12px; background: #0d1117; border-radius: 6px; font-size: 0.85rem; }
+
+/* CODE DETAILS */
+.code-detail { background: #21262d; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
+.code-detail-header { padding: 12px 16px; font-weight: 600; font-size: 1rem; border-bottom: 1px solid #30363d; }
+.code-detail-body { padding: 12px 16px; }
+.code-detail-body p { font-size: 0.9rem; color: #c9d1d9; margin-bottom: 6px; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+.detail-col h4 { font-size: 0.9rem; color: #3fb950; margin-bottom: 8px; }
+.detail-col ul { list-style: none; }
+.detail-col li { font-size: 0.85rem; color: #8b949e; padding: 5px 0; padding-left: 16px; position: relative; }
+.detail-col li::before { content: '▹'; position: absolute; left: 0; color: #3fb950; }
+.special-rules { margin-top: 12px; padding: 10px; background: rgba(248, 81, 73, 0.1); border-radius: 6px; }
+.special-rules h4 { color: #f85149; margin-bottom: 8px; font-size: 0.9rem; }
+.special-rules li { color: #f85149; }
 
 /* CODE COLORS */
 .g { background: rgba(63, 185, 80, 0.2); color: #3fb950; }
@@ -40,127 +53,106 @@ h3 { font-size: 0.9rem; color: #8b949e; margin: 1rem 0 0.5rem; }
 .y { background: rgba(227, 179, 65, 0.2); color: #e3b341; }
 .gamma-bg { background: rgba(255, 165, 0, 0.2); color: #ffa500; }
 
-/* CODE DETAILS */
-.code-detail { background: #21262d; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 1rem; overflow: hidden; }
-.code-detail-header { padding: 10px 12px; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid #30363d; }
-.code-detail-body { padding: 10px 12px; }
-.code-detail-body p { font-size: 0.8rem; color: #8b949e; margin-bottom: 4px; }
-.code-detail-body strong { color: #c9d1d9; }
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
-.detail-col h4 { font-size: 0.8rem; color: #3fb950; margin-bottom: 6px; }
-.detail-col ul { list-style: none; }
-.detail-col li { font-size: 0.75rem; color: #8b949e; padding: 3px 0; padding-left: 12px; position: relative; }
-.detail-col li::before { content: '▹'; position: absolute; left: 0; color: #3fb950; font-size: 0.7rem; }
-.special-rules { margin-top: 10px; padding: 8px; background: rgba(248, 81, 73, 0.1); border-radius: 6px; }
-.special-rules h4 { color: #f85149; margin-bottom: 6px; }
-.special-rules li { color: #f85149; }
-
 /* TABLE */
-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-th, td { padding: 6px 8px; text-align: left; border: 1px solid #30363d; }
-th { background: #21262d; font-weight: 600; color: #c9d1d9; }
-.wrap { overflow-x: auto; border-radius: 6px; border: 1px solid #30363d; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { padding: 10px 12px; text-align: left; border: 1px solid #30363d; }
+th { background: #21262d; font-weight: 600; color: #c9d1d9; font-size: 0.95rem; }
+.wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #30363d; }
 
-/* TABLE ROW COLORS - enabled by default */
-.row-g { background: rgba(63, 185, 80, 0.1) !important; }
-.row-b { background: rgba(88, 166, 255, 0.1) !important; }
-.row-a { background: rgba(210, 153, 34, 0.1) !important; }
-.row-r { background: rgba(248, 81, 73, 0.1) !important; }
-.row-v { background: rgba(163, 113, 247, 0.1) !important; }
-.row-y { background: rgba(227, 179, 65, 0.1) !important; }
+/* TABLE ROW COLORS */
+.row-g { background: rgba(63, 185, 80, 0.15) !important; }
+.row-b { background: rgba(88, 166, 255, 0.15) !important; }
+.row-a { background: rgba(210, 153, 34, 0.15) !important; }
+.row-r { background: rgba(248, 81, 73, 0.15) !important; }
+.row-v { background: rgba(163, 113, 247, 0.15) !important; }
+.row-y { background: rgba(227, 179, 65, 0.15) !important; }
 
 /* DISABLED COLORS */
 .off .row-g, .off .row-b, .off .row-a, .off .row-r, .off .row-v, .off .row-y { background: transparent !important; }
 
-/* INFO BOX */
-.info-box { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
-.info-box strong { color: #3fb950; }
-.info-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.info-item { padding: 4px 10px; background: #0d1117; border-radius: 4px; font-size: 0.75rem; }
-
 /* LEGEND */
-.legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.legend span { padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; margin-bottom: 16px; }
+.legend span { padding: 5px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
 
 /* MODIFIERS */
-.mods { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.mod-group { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; }
-.mod-group h3 { font-size: 0.85rem; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #30363d; margin-top: 0; }
+.mods { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mod-group { background: #21262d; border: 1px solid #30363d; border-radius: 8px; padding: 14px; }
+.mod-group h3 { font-size: 1rem; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #30363d; margin-top: 0; }
 .pos h3 { color: #3fb950; }
 .neg h3 { color: #f85149; }
-.mod-item { padding: 4px 0; font-size: 0.75rem; color: #8b949e; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.mod-item { padding: 6px 0; font-size: 0.9rem; color: #8b949e; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .mod-item:last-child { border: none; }
-.mod-code { display: inline-block; padding: 1px 5px; background: #0d1117; border-radius: 3px; font-size: 0.7rem; margin-right: 6px; font-weight: 600; }
+.mod-code { display: inline-block; padding: 2px 8px; background: #0d1117; border-radius: 4px; font-size: 0.8rem; margin-right: 10px; font-weight: 600; }
 .pos .mod-code { color: #3fb950; }
 .neg .mod-code { color: #f85149; }
-.mod-effect { display: inline-block; padding: 2px 6px; background: #0d1117; border-radius: 10px; font-size: 0.7rem; margin-top: 4px; font-weight: 600; }
+.mod-effect { display: inline-block; padding: 3px 10px; background: #0d1117; border-radius: 12px; font-size: 0.8rem; margin-top: 4px; margin-left: 8px; font-weight: 600; }
 .pos .mod-effect { color: #3fb950; }
 .neg .mod-effect { color: #f85149; }
 
 /* ROLES */
-.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
-.role-card { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; }
-.role-title { font-weight: 600; color: #58a6ff; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #30363d; font-size: 0.85rem; }
-.role-card p { font-size: 0.75rem; color: #8b949e; margin-bottom: 3px; }
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.role-card { background: #21262d; border: 1px solid #30363d; border-radius: 8px; padding: 14px; }
+.role-title { font-weight: 600; color: #58a6ff; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #30363d; font-size: 1rem; }
+.role-card p { font-size: 0.85rem; color: #8b949e; margin-bottom: 4px; padding-left: 8px; }
 
 /* HIERARCHY */
-.hier { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; margin-top: 8px; }
-.hier h3 { margin-top: 0; color: #d29922; font-size: 0.85rem; }
-.hier div { font-family: monospace; font-size: 0.8rem; }
+.hier { background: #21262d; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; margin-top: 12px; }
+.hier h3 { margin-top: 0; color: #d29922; font-size: 0.95rem; }
+.hier div { font-family: monospace; font-size: 0.9rem; }
 
 /* ENEMIES */
-.enemies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.enemy { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; }
-.enemy h4 { font-size: 0.8rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #30363d; }
-.enemy p { font-size: 0.75rem; color: #8b949e; }
+.enemies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.enemy { background: #21262d; border: 1px solid #30363d; border-radius: 8px; padding: 12px; }
+.enemy h4 { font-size: 0.9rem; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #30363d; }
+.enemy p { font-size: 0.85rem; color: #8b949e; line-height: 1.6; }
 .enemy:nth-child(1) h4 { color: #58a6ff; }
 .enemy:nth-child(2) h4 { color: #d29922; }
 .enemy:nth-child(3) h4 { color: #f85149; }
 
-/* CALCULATOR */
-.calc { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 12px; max-width: 350px; }
-.calc label { display: block; font-size: 0.8rem; color: #8b949e; margin-bottom: 4px; }
-.calc select { width: 100%; padding: 6px; background: #0d1117; border: 1px solid #30363d; border-radius: 4px; color: #fff; margin-bottom: 8px; }
-.calc-check { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-.calc-check label { display: flex; align-items: center; gap: 3px; padding: 3px 6px; background: #0d1117; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
-.calc button { width: 100%; padding: 8px; background: #3fb950; border: none; border-radius: 4px; color: #000; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
-.calc button:hover { opacity: 0.9; }
-.result { margin-top: 8px; padding: 10px; background: #0d1117; border-radius: 4px; text-align: center; display: none; font-size: 0.85rem; }
-.result.show { display: block; }
+/* ARTICLES TABLE */
+.art-table { font-size: 0.95rem; }
+.art-table th { font-size: 0.9rem; }
+.art-table td { padding: 8px 10px; }
+.art-table .num { background: #21262d; color: #d29922; font-weight: 700; width: 50px; text-align: center; }
+.art-table .desc { font-size: 0.9rem; }
 
-/* ARTICLE */
-.art-table { font-size: 0.75rem; }
-.art-table td { padding: 5px 7px; }
-.art-table .l { background: #21262d; color: #d29922; font-weight: 700; }
-.art-table .c1 { color: #3fb950; }
-.art-table .c2 { color: #58a6ff; }
-.art-table .c3 { color: #a371f7; }
-.art-table .c4 { color: #d29922; }
-.art-table .c5 { color: #f85149; }
+/* ARTICLE DETAILS */
+.article-section { background: #21262d; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.article-header { padding: 10px 14px; font-weight: 600; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
+.article-body { padding: 10px 14px; }
+.article-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.art-card { background: #161b22; border-radius: 6px; padding: 8px; text-align: center; }
+.art-card .art-num { font-weight: 700; margin-bottom: 4px; font-size: 0.85rem; }
+.art-card .art-name { font-size: 0.75rem; color: #8b949e; }
+.art-l1 .art-num { color: #3fb950; }
+.art-l2 .art-num { color: #58a6ff; }
+.art-l3 .art-num { color: #a371f7; }
+.art-l4 .art-num { color: #d29922; }
+.art-l5 .art-num { color: #f85149; }
 
 /* PRINCIPLES */
 .principles { display: flex; gap: 12px; margin-bottom: 12px; }
-.principle { flex: 1; background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; text-align: center; }
-.principle-icon { font-size: 1.5rem; margin-bottom: 4px; }
-.principle h4 { font-size: 0.8rem; color: #3fb950; margin-bottom: 4px; }
-.principle p { font-size: 0.75rem; color: #8b949e; }
+.principle { flex: 1; background: #21262d; border: 1px solid #30363d; border-radius: 8px; padding: 12px; text-align: center; }
+.principle-icon { font-size: 1.5rem; margin-bottom: 6px; }
+.principle h4 { font-size: 0.9rem; color: #3fb950; margin-bottom: 4px; }
+.principle p { font-size: 0.85rem; color: #8b949e; }
 
 /* AUTHORITY */
-.authority { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.auth-item { padding: 5px 10px; background: #21262d; border: 1px solid #30363d; border-radius: 4px; font-size: 0.8rem; }
+.authority { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.auth-item { padding: 6px 12px; background: #21262d; border: 1px solid #30363d; border-radius: 6px; font-size: 0.9rem; }
 
 /* FOOTER */
-.footer { text-align: center; padding: 1rem; color: #8b949e; font-size: 0.75rem; border-top: 1px solid #30363d; margin-top: 2rem; }
+.footer { text-align: center; padding: 1.5rem; color: #8b949e; font-size: 0.8rem; border-top: 1px solid #30363d; margin-top: 2rem; }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  body { flex-direction: column; }
+@media (max-width: 900px) {
   .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #30363d; }
   .content { margin-left: 0; padding: 1rem; }
   .mods { grid-template-columns: 1fr; }
   .enemies { grid-template-columns: 1fr; }
   .detail-grid { grid-template-columns: 1fr; }
   .principles { flex-direction: column; }
+  .article-grid { grid-template-columns: repeat(3, 1fr); }
 }
 </style>
 </head>
@@ -181,7 +173,6 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
     <a href="#modifiers">📋 Модификаторы</a>
     <a href="#roles">👔 Должности СБ</a>
     <a href="#enemies">☠️ Враги</a>
-    <a href="#calc">🧮 Калькулятор</a>
   </nav>
 </div>
 
@@ -192,7 +183,7 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   <h2>📢 Коды тревоги</h2>
   
   <div class="info-box">
-    <strong>Порядок правоприменения:</strong> Центральное Командование → НРП Уровня тревоги → НРП отделов → Космический Закон
+    <strong>Порядок правоприменения:</strong> ЦК → НРП → Отделы → КЗ
   </div>
   
   <div class="principles">
@@ -209,17 +200,17 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
 
   <!-- ЗЕЛЁНЫЙ -->
   <div class="code-detail">
-    <div class="code-detail-header g">🟢 ЗЕЛЁНЫЙ КОД — Базовый уровень безопасности</div>
+    <div class="code-detail-header g">🟢 ЗЕЛЁНЫЙ КОД — Базовый уровень</div>
     <div class="code-detail-body">
-      <p>Все особые положения на объекте были аннулированы. У командования нет сведений о наличии какой-либо угрозы.</p>
+      <p>Все особые положения аннулированы. У командования нет сведений о наличии угрозы.</p>
       <div class="detail-grid">
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li>Основное вооружение должно быть скрыто</li>
-            <li>Разрешена выдача <strong>станнеров</strong></li>
-            <li>Огнестрельное оружие только с нелетальными боеприпасами</li>
-            <li>Задержание только при непосредственном наблюдении</li>
+            <li>Основное вооружение скрыто</li>
+            <li>Разрешена выдача станнеров</li>
+            <li>Огнестрельное только с нелетальными</li>
+            <li>Задержание при непосредственном наблюдении</li>
             <li>Требуется санкция для задержаний</li>
             <li>Запрещены обыски без письменного разрешения</li>
           </ul>
@@ -227,15 +218,14 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
         <div class="detail-col">
           <h4>Регламент экипажа</h4>
           <ul>
-            <li>Свободное перемещение по уровню допуска</li>
-            <li><strong>Рекомендовано:</strong> режим "Координаты"</li>
-            <li><strong>Запрещено:</strong> разглашение конфиденциальной информации</li>
-            <li>ЗОДы закрыты на болты при обоснованной причине</li>
-            <li>Хранилище открывается только при необходимости</li>
+            <li>Свободное перемещение по допуску</li>
+            <li>Рекомендовано: режим "Координаты"</li>
+            <li>Запрещено: разглашение конфиденциальной информации</li>
+            <li>ЗОДы закрыты при обоснованной причине</li>
+            <li>Хранилище открывается при необходимости</li>
           </ul>
         </div>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, Центральное Командование</p>
     </div>
   </div>
 
@@ -243,15 +233,15 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   <div class="code-detail">
     <div class="code-detail-header b">🔵 СИНИЙ КОД — Уровень средней угрозы</div>
     <div class="code-detail-body">
-      <p>Командование станции получило надежные данные о враждебной активности. Положение упрощает процедуры.</p>
+      <p>Командование получило данные о враждебной активности. Положение упрощает процедуры.</p>
       <div class="detail-grid">
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li>Разрешено <strong>нелетальное вооружение</strong></li>
-            <li><strong>Летальное</strong> — с санкции ГСБ</li>
+            <li>Разрешено нелетальное вооружение</li>
+            <li>Летальное — с санкции ГСБ</li>
             <li>Открытое ношение оружия допускается</li>
-            <li>Санкция не требуется при достаточных основаниях</li>
+            <li>Санкция не требуется при основаниях</li>
             <li>Усиленный контроль доступа</li>
             <li>Проверка всех входящих/выходящих</li>
             <li>Усиленный режим охраны критических систем</li>
@@ -262,7 +252,7 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
           <ul>
             <li>Ограничение свободного перемещения</li>
             <li>Соблюдение уровней допуска</li>
-            <li>Обязательная идентификация при проходе через КПП</li>
+            <li>Обязательная идентификация на КПП</li>
             <li>Следовать указаниям СБ</li>
             <li>Включить режим "Координаты"</li>
             <li>Избегать скоплений экипажа</li>
@@ -270,25 +260,24 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
           </ul>
         </div>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Глава СБ</p>
     </div>
   </div>
 
   <!-- ЯНТАРНЫЙ -->
   <div class="code-detail">
-    <div class="code-detail-header a">🟡 ЯНТАРНЫЙ КОД — Повышенный уровень угрозы</div>
+    <div class="code-detail-header a">🟡 ЯНТАРНЫЙ КОД — Повышенный уровень</div>
     <div class="code-detail-body">
-      <p>Командование объявляет о значительных враждебных угрозах. Сотрудники СБ следуют процедурам усиления.</p>
+      <p>Значительные враждебные угрозы. Сотрудники СБ следуют процедурам усиления.</p>
       <div class="detail-grid">
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li>Разрешено <strong>летальное вооружение</strong> из арсенала</li>
+            <li>Разрешено летальное вооружение из арсенала</li>
             <li>Ограничения на ношение оружия сняты</li>
             <li>Обязательное ношение защитного снаряжения</li>
-            <li>Право на проведение <strong>специальных операций</strong></li>
+            <li>Право на проведение специальных операций</li>
             <li>Усиленный контроль всех зон</li>
-            <li><strong>Обыски без санкции</strong></li>
+            <li>Обыски без санкции</li>
             <li>Полная проверка всех помещений</li>
           </ul>
         </div>
@@ -296,16 +285,15 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
           <h4>Регламент экипажа</h4>
           <ul>
             <li>Строгий контроль перемещений</li>
-            <li>Обязательная идентификация при проходе через КПП</li>
-            <li><strong>Запрет</strong> нахождения в запретных зонах</li>
+            <li>Обязательная идентификация на КПП</li>
+            <li>Запрет нахождения в запретных зонах</li>
             <li>Следовать указаниям СБ</li>
             <li>Включить режим "Координаты"</li>
             <li>Избегать скопления экипажа</li>
-            <li><strong>Готовность к эвакуации</strong></li>
+            <li>Готовность к эвакуации</li>
           </ul>
         </div>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Глава СБ</p>
     </div>
   </div>
 
@@ -313,29 +301,29 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   <div class="code-detail">
     <div class="code-detail-header r">🔴 КРАСНЫЙ КОД — Максимальная угроза</div>
     <div class="code-detail-body">
-      <p>Начало военной операции. Применение летальной силы. Любой сотрудник обязан подчиняться приказам СБ беспрекословно.</p>
-      <p style="font-size:0.75rem;color:#f85149;margin-bottom:8px;"><strong>Условие:</strong> Присутствие 3+ угроз Янтарного уровня или угроза граничащая с полным уничтожением.</p>
+      <p>Начало военной операции. Применение летальной силы. Любой сотрудник обязан подчиняться приказам СБ.</p>
+      <p style="font-size:0.85rem;color:#f85149;margin-bottom:10px;"><strong>Условие:</strong> Присутствие 3+ угроз Янтарного уровня или угроза граничащая с полным уничтожением.</p>
       <div class="detail-grid">
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li><strong>Любое вооружение</strong> из арсенала</li>
+            <li>Любое вооружение из арсенала</li>
             <li>Обязательное ношение полного комплекта защиты</li>
-            <li><strong>Сила без предупреждения</strong></li>
+            <li>Сила без предупреждения</li>
             <li>Специальные операции в приоритетном порядке</li>
-            <li><strong>Проникновение в любые зоны</strong></li>
+            <li>Проникновение в любые зоны</li>
             <li>Любые средства подавления</li>
-            <li><strong>Полный локдаун</strong> всех зон</li>
+            <li>Полный локдаун всех зон</li>
             <li>Блокировка всех выходов и входов</li>
           </ul>
         </div>
         <div class="detail-col">
           <h4>Регламент экипажа</h4>
           <ul>
-            <li><strong>Полный запрет</strong> на свободное перемещение</li>
+            <li>Полный запрет на свободное перемещение</li>
             <li>Обязательная эвакуация в безопасные зоны</li>
             <li>Строгий контроль всех перемещений</li>
-            <li><strong>Немедленное подчинение</strong> приказам СБ</li>
+            <li>Немедленное подчинение приказам СБ</li>
             <li>Соблюдение полной тишины</li>
             <li>Готовность к экстренной эвакуации</li>
             <li>Полная эвакуация некритичного персонала</li>
@@ -346,12 +334,11 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
       <div class="special-rules">
         <h4>Особые положения</h4>
         <ul>
-          <li><strong>Приоритет</strong> всех ресурсов на устранение угрозы</li>
-          <li><strong>Все решения</strong> принимаются только командованием</li>
-          <li><strong>Отказ от приказов</strong> карается по максимально строгому регламенту</li>
+          <li>Приоритет всех ресурсов на устранение угрозы</li>
+          <li>Все решения принимаются только командованием</li>
+          <li>Отказ от приказов карается по максимально строгому регламенту</li>
         </ul>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Глава СБ</p>
     </div>
   </div>
 
@@ -359,16 +346,16 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   <div class="code-detail">
     <div class="code-detail-header gamma-bg">⚡ ГАММА КОД — Особый режим максимальной мобилизации</div>
     <div class="code-detail-body">
-      <p>Станция под серьёзной угрозой и может быть потеряна. ЦК проводит значительное усиление СБ. Неограниченные превентивные меры.</p>
-      <p style="font-size:0.75rem;color:#ffa500;margin-bottom:8px;"><strong>Важно:</strong> Только по решению ЦК при крупных угрозах и невозможности эвакуации.</p>
+      <p>Станция под серьёзной угрозой. ЦК проводит значительное усиление СБ. Неограниченные превентивные меры.</p>
+      <p style="font-size:0.85rem;color:#ffa500;margin-bottom:10px;"><strong>Важно:</strong> Только по решению ЦК при крупных угрозах и невозможности эвакуации.</p>
       <div class="detail-grid">
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li><strong>Любое вооружение</strong> на станции</li>
+            <li>Любое вооружение на станции</li>
             <li>Полный комплект защиты</li>
             <li>Любые спецсредства</li>
-            <li><strong>Мобилизация всех сил СБ</strong></li>
+            <li>Мобилизация всех сил СБ</li>
             <li>Полная изоляция критических зон</li>
             <li>Проникновение в любые помещения</li>
             <li>Приоритетное использование ресурсов</li>
@@ -380,8 +367,8 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
             <li>Строгий контроль всех перемещений</li>
             <li>Эвакуация в безопасные зоны</li>
             <li>Запрет нахождения в запретных зонах</li>
-            <li><strong>Полное подчинение</strong> приказам СБ</li>
-            <li><strong>Отключение</strong> личных коммуникаторов</li>
+            <li>Полное подчинение приказам СБ</li>
+            <li>Отключение личных коммуникаторов</li>
             <li>Соблюдение режима тишины</li>
             <li>Готовность к эвакуации</li>
           </ul>
@@ -390,10 +377,9 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
       <div class="special-rules">
         <h4>Особые положения</h4>
         <ul>
-          <li><strong>Содержание под стражей</strong> допускается без процессуальных формальностей</li>
+          <li>Содержание под стражей допускается без процессуальных формальностей</li>
         </ul>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Только Центральное Командование</p>
     </div>
   </div>
 
@@ -401,14 +387,14 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   <div class="code-detail">
     <div class="code-detail-header v">🟣 ФИОЛЕТОВЫЙ КОД — Биологическая/химическая угроза</div>
     <div class="code-detail-body">
-      <p>Угроза локализованной эпидемической вспышки. Объявлен карантин. Персонал выполняет инструкции медицинского отдела.</p>
+      <p>Угроза локализованной эпидемической вспышки. Объявлен карантин. Персонал выполняет инструкции медотдела.</p>
       <div class="detail-grid">
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li><strong>Обязательные средства химзащиты</strong></li>
-            <li>Выдача <strong>средств защиты</strong> и <strong>защитных костюмов</strong></li>
-            <li>Разрешено <strong>летальное вооружение</strong></li>
+            <li>Обязательные средства химзащиты</li>
+            <li>Выдача средств защиты и костюмов</li>
+            <li>Разрешено летальное вооружение</li>
             <li>Организация карантинных зон</li>
             <li>Изоляция заражённых участков</li>
             <li>Контроль распространения заражения</li>
@@ -417,16 +403,15 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
         <div class="detail-col">
           <h4>Регламент экипажа</h4>
           <ul>
-            <li><strong>Немедленное</strong> надевание средств защиты</li>
+            <li>Немедленное надевание средств защиты</li>
             <li>Соблюдение карантинного режима</li>
             <li>Выполнение указаний СБ</li>
-            <li><strong>Запрещено:</strong> снятие средств защиты без веских причин</li>
-            <li><strong>Запрещено:</strong> контакт с заражёнными зонами</li>
+            <li>Запрещено: снятие средств защиты</li>
+            <li>Запрещено: контакт с заражёнными зонами</li>
             <li>Полная изоляция заражённых зон</li>
           </ul>
         </div>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Главный врач</p>
     </div>
   </div>
 
@@ -439,7 +424,7 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
         <div class="detail-col">
           <h4>Регламент СБ</h4>
           <ul>
-            <li>Разрешено <strong>нелетальное вооружение</strong></li>
+            <li>Разрешено нелетальное вооружение</li>
             <li>Обязательное ношение защитного снаряжения</li>
             <li>Усиленный контроль критических зон</li>
             <li>Организация дополнительных постов наблюдения</li>
@@ -459,7 +444,6 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
           </ul>
         </div>
       </div>
-      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Старший инженер</p>
     </div>
   </div>
 </section>
@@ -515,7 +499,7 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   <h2>⚖️ Космический Закон</h2>
   
   <div class="info-box">
-    <strong>Иерархия:</strong> Представитель НТР → Капитан → ГСБ → Смотритель
+    <strong>Иерархия:</strong> НТР → Капитан → ГСБ → Смотритель
     <br><small style="color:#8b949e;">Неисполнение решения вышестоящего — статья 203</small>
   </div>
   
@@ -527,20 +511,140 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
     <span style="background:rgba(248,81,73,0.2);color:#f85149;">5XX: Пермабриг / импланты / казнь</span>
   </div>
 
-  <div class="wrap" style="margin-top:12px;">
-    <table class="art-table">
-      <thead><tr><th>Код</th><th>1XX</th><th>2XX</th><th>3XX</th><th>4XX</th><th>5XX</th></tr></thead>
-      <tbody>
-        <tr><td class="l">X00</td><td class="c1">Ущерб станции</td><td class="c2">Мелкий саботаж</td><td class="c3">Саботаж</td><td class="c4">Гранд. саботаж</td><td class="c5">Вопиющий саботаж</td></tr>
-        <tr><td class="l">X01</td><td class="c1">Неподобание</td><td class="c2">Антисоциальное</td><td class="c3">Суицид</td><td class="c4">Похищение</td><td class="c5">Заложники</td></tr>
-        <tr><td class="l">X02</td><td class="c1">Рукоприкладство</td><td class="c2">Драка</td><td class="c3">Увечья</td><td class="c4">Тяжкие увечья</td><td class="c5">Убийство</td></tr>
-        <tr><td class="l">X03</td><td class="c1">—</td><td class="c2">Неприказ</td><td class="c3">Сопр. власти</td><td class="c4">Мятеж</td><td class="c5">Контракт</td></tr>
-        <tr><td class="l">X04</td><td class="c1">—</td><td class="c2">Контрабанда</td><td class="c3">Запрещ. контраб.</td><td class="c4">Враждебная</td><td class="c5">—</td></tr>
-        <tr><td class="l">X05</td><td class="c1">Преследование</td><td class="c2">Домогательства</td><td class="c3">Понуждение</td><td class="c4">Изнасилование</td><td class="c5">—</td></tr>
-        <tr><td class="l">X06</td><td class="c1">—</td><td class="c2">Кража отдела</td><td class="c3">Кража станции</td><td class="c4">Крупная кража</td><td class="c5">Крит. объекты</td></tr>
-        <tr><td class="l">X07</td><td class="c1">Пребывание</td><td class="c2">Пребывание в ЗОД</td><td class="c3">Вторжение</td><td class="c4">Вторжение в ЗОД</td><td class="c5">—</td></tr>
-      </tbody>
-    </table>
+  <!-- X00 - Ущерб станции -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(63,185,80,0.1);border-left:4px solid #3fb950;">
+      <span>100 — 500: Ущерб станции</span>
+      <span style="font-size:0.8rem;color:#3fb950;">1XX → 5XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card art-l1"><div class="art-num">100</div><div class="art-name">Мелкий ущерб<br><small style="color:#3fb950;">до 5 мин</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">200</div><div class="art-name">Мелкий саботаж<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">300</div><div class="art-name">Саботаж<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">400</div><div class="art-name">Грандиозный саботаж<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card art-l5"><div class="art-num">500</div><div class="art-name">Вопиющий саботаж<br><small style="color:#f85149;">Пермабриг/Казнь</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X01 - Неподобающее поведение -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(88,166,255,0.1);border-left:4px solid #58a6ff;">
+      <span>101 — 501: Неподобающее поведение</span>
+      <span style="font-size:0.8rem;color:#58a6ff;">1XX → 5XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card art-l1"><div class="art-num">101</div><div class="art-name">Неподобание<br><small style="color:#3fb950;">до 5 мин</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">201</div><div class="art-name">Антисоциальное поведение<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">301</div><div class="art-name">Суицид<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">401</div><div class="art-name">Похищение<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card art-l5"><div class="art-num">501</div><div class="art-name">Заложники<br><small style="color:#f85149;">Пермабриг/Казнь</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X02 - Насилие -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(163,113,247,0.1);border-left:4px solid #a371f7;">
+      <span>102 — 502: Насилие</span>
+      <span style="font-size:0.8rem;color:#a371f7;">1XX → 5XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card art-l1"><div class="art-num">102</div><div class="art-name">Рукоприкладство<br><small style="color:#3fb950;">до 5 мин</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">202</div><div class="art-name">Драка<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">302</div><div class="art-name">Увечья<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">402</div><div class="art-name">Тяжкие увечья<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card art-l5"><div class="art-num">502</div><div class="art-name">Убийство<br><small style="color:#f85149;">Пермабриг/Казнь</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X03 - Неподчинение -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(210,153,34,0.1);border-left:4px solid #d29922;">
+      <span>103 — 503: Неподчинение</span>
+      <span style="font-size:0.8rem;color:#d29922;">2XX → 5XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card"><div class="art-num" style="color:#8b949e;">—</div><div class="art-name">Нет<br><small style="color:#8b949e;">1XX отсутствует</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">203</div><div class="art-name">Неисполнение приказа<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">303</div><div class="art-name">Сопротивление власти<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">403</div><div class="art-name">Мятеж<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card art-l5"><div class="art-num">503</div><div class="art-name">Контракт<br><small style="color:#f85149;">Пермабриг/Казнь</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X04 - Контрабанда -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(248,81,73,0.1);border-left:4px solid #f85149;">
+      <span>104 — 404: Контрабанда</span>
+      <span style="font-size:0.8rem;color:#f85149;">2XX → 4XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card"><div class="art-num" style="color:#8b949e;">—</div><div class="art-name">Нет<br><small style="color:#8b949e;">1XX отсутствует</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">204</div><div class="art-name">Контрабанда<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">304</div><div class="art-name">Запрещённая контрабанда<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">404</div><div class="art-name">Враждебная контрабанда<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card"><div class="art-num" style="color:#8b949e;">—</div><div class="art-name">Нет<br><small style="color:#8b949e;">5XX отсутствует</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X05 - Нарушение личного пространства -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(227,179,65,0.1);border-left:4px solid #e3b341;">
+      <span>105 — 405: Нарушение личного пространства</span>
+      <span style="font-size:0.8rem;color:#e3b341;">1XX → 4XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card art-l1"><div class="art-num">105</div><div class="art-name">Преследование<br><small style="color:#3fb950;">до 5 мин</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">205</div><div class="art-name">Домогательства<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">305</div><div class="art-name">Понуждение<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">405</div><div class="art-name">Изнасилование<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card"><div class="art-num" style="color:#8b949e;">—</div><div class="art-name">Нет<br><small style="color:#8b949e;">5XX отсутствует</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X06 - Кража -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(63,185,80,0.1);border-left:4px solid #3fb950;">
+      <span>106 — 506: Кража</span>
+      <span style="font-size:0.8rem;color:#3fb950;">1XX → 5XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card art-l1"><div class="art-num">106</div><div class="art-name">Кража отдела<br><small style="color:#3fb950;">до 5 мин</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">206</div><div class="art-name">Кража станции<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">306</div><div class="art-name">Кража с проникновением<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">406</div><div class="art-name">Крупная кража<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card art-l5"><div class="art-num">506</div><div class="art-name">Кража критических объектов<br><small style="color:#f85149;">Пермабриг/Казнь</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- X07 - Незаконное проникновение -->
+  <div class="article-section">
+    <div class="article-header" style="background:rgba(88,166,255,0.1);border-left:4px solid #58a6ff;">
+      <span>107 — 407: Незаконное проникновение</span>
+      <span style="font-size:0.8rem;color:#58a6ff;">1XX → 4XX</span>
+    </div>
+    <div class="article-body">
+      <div class="article-grid">
+        <div class="art-card art-l1"><div class="art-num">107</div><div class="art-name">Пребывание<br><small style="color:#3fb950;">до 5 мин</small></div></div>
+        <div class="art-card art-l2"><div class="art-num">207</div><div class="art-name">Пребывание в ЗОД<br><small style="color:#58a6ff;">5-10 мин</small></div></div>
+        <div class="art-card art-l3"><div class="art-num">307</div><div class="art-name">Вторжение<br><small style="color:#a371f7;">15-30 мин</small></div></div>
+        <div class="art-card art-l4"><div class="art-num">407</div><div class="art-name">Вторжение в ЗОД<br><small style="color:#d29922;">30-60 мин</small></div></div>
+        <div class="art-card"><div class="art-num" style="color:#8b949e;">—</div><div class="art-name">Нет<br><small style="color:#8b949e;">5XX отсутствует</small></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -650,46 +754,17 @@ th { background: #21262d; font-weight: 600; color: #c9d1d9; }
   
   <div class="enemies">
     <div class="enemy">
-      <h4>Конвертированные (Аресты)</h4>
+      <h4>🔵 Конвертированные (Аресты)</h4>
       <p>Культист, Раб Вампира, Жертва промывки мозгов, Жертва импланта рабства, Член революции, Члены "Семьи"</p>
     </div>
     <div class="enemy">
-      <h4>Вечный пермабриг</h4>
+      <h4>🟡 Вечный пермабриг</h4>
       <p>Агент Синдиката, Враждебные Воксы, Работорговцы, Еретик</p>
     </div>
     <div class="enemy">
-      <h4>Уничтожение на месте</h4>
+      <h4>🔴 Уничтожение на месте</h4>
       <p>Генокрад, Космический ниндзя, Маг, Агент Синдиката, Космические Пираты, Ксеноморф, Блоб, Морф, Паук террора, Хедкрабы, Одинокий оперативник, Дьявол</p>
     </div>
-  </div>
-</section>
-
-<!-- ===== КАЛЬКУЛЯТОР ===== -->
-<section id="calc" class="section">
-  <h2>🧮 Калькулятор приговора</h2>
-  
-  <div class="calc">
-    <label>Уровень статьи:</label>
-    <select id="article">
-      <option value="100">1XX (до 5 мин)</option>
-      <option value="200">2XX (5-10 мин)</option>
-      <option value="300">3XX (15-30 мин)</option>
-      <option value="400">4XX (30-60 мин)</option>
-      <option value="500">5XX (особое)</option>
-    </select>
-    
-    <label>Модификаторы:</label>
-    <div class="calc-check">
-      <label><input type="checkbox" id="m1"> П-1</label>
-      <label><input type="checkbox" id="m2"> О-1</label>
-      <label><input type="checkbox" id="m3"> О-2</label>
-      <label><input type="checkbox" id="m4"> О-3</label>
-      <label><input type="checkbox" id="m5"> О-5</label>
-      <label><input type="checkbox" id="m6"> О-6</label>
-    </div>
-    
-    <button onclick="calc()">Рассчитать</button>
-    <div id="result" class="result"></div>
   </div>
 </section>
 
@@ -719,34 +794,6 @@ if (localStorage.getItem('colors') === 'off') {
   document.getElementById('colorToggle').checked = false;
 }
 
-// Calculator
-function calc() {
-  var art = parseInt(document.getElementById('article').value);
-  var time = art >= 500 ? 0 : art >= 400 ? 45 : art >= 300 ? 22 : art >= 200 ? 7 : 5;
-  var mods = [];
-  
-  if (document.getElementById('m1').checked) { mods.push('П-1 -50%'); time *= 0.5; }
-  if (document.getElementById('m2').checked) { mods.push('О-1 +10'); time += 10; }
-  if (document.getElementById('m3').checked) { mods.push('О-2 +15'); time += 15; }
-  if (document.getElementById('m4').checked) { mods.push('О-3 +50%'); time *= 1.5; }
-  if (document.getElementById('m5').checked) { mods.push('О-5 +50%'); time *= 1.5; }
-  if (document.getElementById('m6').checked) { mods.push('О-6 +100%'); time *= 2; }
-  
-  time = Math.max(0, Math.round(time));
-  var result = document.getElementById('result');
-  
-  if (art >= 500) {
-    result.innerHTML = '<div style="color:#d29922;">' + (time > 0 ? time + ' мин или Пермабриг' : 'Пермабриг / Казнь') + '</div>';
-  } else if (time > 60) {
-    result.innerHTML = '<div style="color:#f85149;">Пермабриг (60+ мин)</div>';
-  } else {
-    result.innerHTML = '<div style="color:#3fb950;font-size:1.1rem;">' + time + ' мин</div>';
-  }
-  
-  if (mods.length) result.innerHTML += '<div style="margin-top:6px;font-size:0.75rem;color:#8b949e;">' + mods.join(', ') + '</div>';
-  result.classList.add('show');
-}
-
 // Smooth scroll
 document.querySelectorAll('.nav a').forEach(function(a) {
   a.addEventListener('click', function(e) {
@@ -759,5 +806,5 @@ document.querySelectorAll('.nav a').forEach(function(a) {
   });
 });
 </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0bf5b4f5a33e499',t:'MTc4MTUwMzI0OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0bf673d99b0e499',t:'MTc4MTUwMzczOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
