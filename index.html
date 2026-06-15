@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Station 14 Wiki</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <header class="site-header">
+        <div class="logo-container">
+            <div class="station-icon">
+                <svg viewBox="0 0 100 100" width="50" height="50">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#00ff88" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="15" fill="#00ff88"/>
+                    <line x1="50" y1="0" x2="50" y2="15" stroke="#00ff88" stroke-width="2"/>
+                    <line x1="50" y1="85" x2="50" y2="100" stroke="#00ff88" stroke-width="2"/>
+                    <line x1="0" y1="50" x2="15" y2="50" stroke="#00ff88" stroke-width="2"/>
+                    <line x1="85" y1="50" x2="100" y2="50" stroke="#00ff88" stroke-width="2"/>
+                </svg>
+            </div>
+            <h1>SS14 Wiki</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link active">Главная</a>
+            <a href="codes.html" class="nav-link">Коды тревог</a>
+            <a href="security.html" class="nav-link">НРП СБ</a>
+            <a href="law.html" class="nav-link">Космический Закон</a>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="hero">
+            <h2>Добро пожаловать на Wiki сервера</h2>
+            <p>Здесь собрана вся необходимая информация для работы на станции</p>
+        </section>
+
+        <section class="cards-grid">
+            <div class="card code-green" onclick="location.href='codes.html'">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48">
+                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>НРП Кодов</h3>
+                <p>Система уровней угрозы и кодов тревоги станции</p>
+                <span class="card-badge">Коды тревог</span>
+            </div>
+
+            <div class="card code-blue" onclick="location.href='security.html'">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>НРП Службы Безопасности</h3>
+                <p>Должностные обязанности и права сотрудников СБ</p>
+                <span class="card-badge">СБ</span>
+            </div>
+
+            <div class="card code-law" onclick="location.href='law.html'">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48">
+                        <path d="M12 1L2 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-5z" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="8" x2="12" y2="14" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="17" r="1" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Космический Закон</h3>
+                <p>Уголовный кодекс НаноТрейзен и статьи</p>
+                <span class="card-badge">КЗ</span>
+            </div>
+        </section>
+
+        <section class="quick-info">
+            <h3>Быстрая навигация по кодам</h3>
+            <div class="code-buttons">
+                <a href="codes.html#green" class="code-btn code-green-btn">🟢 Зелёный</a>
+                <a href="codes.html#blue" class="code-btn code-blue-btn">🔵 Синий</a>
+                <a href="codes.html#amber" class="code-btn code-amber-btn">🟡 Янтарный</a>
+                <a href="codes.html#red" class="code-btn code-red-btn">🔴 Красный</a>
+                <a href="codes.html#gamma" class="code-btn code-gamma-btn">⚡ Гамма</a>
+                <a href="codes.html#violet" class="code-btn code-violet-btn">🟣 Фиолетовый</a>
+                <a href="codes.html#yellow" class="code-btn code-yellow-btn">🟠 Жёлтый</a>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h3>Порядок правоприменения</h3>
+            <div class="hierarchy-path">
+                <span class="path-item">Центральное Командование</span>
+                <span class="path-arrow">→</span>
+                <span class="path-item">НРП Уровня тревоги</span>
+                <span class="path-arrow">→</span>
+                <span class="path-item">НРП отделов</span>
+                <span class="path-arrow">→</span>
+                <span class="path-item">Космический Закон</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Space Station 14 Wiki • Информационный портал сервера</p>
+        <p class="small">НаноТрейзен © 2501</p>
+    </footer>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0be4a425e879f70',t:'MTc4MTQ5MjA2NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

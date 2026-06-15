@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НРП Кодов - SS14 Wiki</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <header class="site-header">
+        <div class="logo-container">
+            <div class="station-icon">
+                <svg viewBox="0 0 100 100" width="50" height="50">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#00ff88" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="#00ff88" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="15" fill="#00ff88"/>
+                    <line x1="50" y1="0" x2="50" y2="15" stroke="#00ff88" stroke-width="2"/>
+                    <line x1="50" y1="85" x2="50" y2="100" stroke="#00ff88" stroke-width="2"/>
+                    <line x1="0" y1="50" x2="15" y2="50" stroke="#00ff88" stroke-width="2"/>
+                    <line x1="85" y1="50" x2="100" y2="50" stroke="#00ff88" stroke-width="2"/>
+                </svg>
+            </div>
+            <h1>SS14 Wiki</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Главная</a>
+            <a href="codes.html" class="nav-link active">Коды тревог</a>
+            <a href="security.html" class="nav-link">НРП СБ</a>
+            <a href="law.html" class="nav-link">Космический Закон</a>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="page-header">
+            <h2>Нормативные Рабочие Процедуры Уровня Угрозы</h2>
+            <p class="subtitle">Регламент применения кодов и действия персонала при их объявлении</p>
+        </section>
+
+        <section class="content-block" id="intro">
+            <h3>Основные понятия</h3>
+            <div class="info-boxes">
+                <div class="info-box">
+                    <strong>Уровень угрозы</strong> — установленный режим функционирования станции в зависимости от степени опасности.
+                </div>
+                <div class="info-box">
+                    <strong>Код</strong> — условное обозначение уровня угрозы.
+                </div>
+                <div class="info-box">
+                    <strong>Режим</strong> — совокупность правил и ограничений, действующих при определённом уровне угрозы.
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h3>Принципы применения</h3>
+            <div class="principles-grid">
+                <div class="principle">
+                    <div class="principle-icon">⚖️</div>
+                    <h4>Пропорциональность</h4>
+                    <p>Уровень угрозы соответствует характеру опасности</p>
+                </div>
+                <div class="principle">
+                    <div class="principle-icon">⏱️</div>
+                    <h4>Своевременность</h4>
+                    <p>Объявление кода производится незамедлительно</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h3>Право на объявление уровня угрозы</h3>
+            <div class="authority-list">
+                <div class="authority-item">👤 Капитан станции</div>
+                <div class="authority-item">🏢 Центральное Командование</div>
+                <div class="authority-item">🛡️ Глава Службы Безопасности</div>
+                <div class="authority-item">📋 Представитель НаноТрейзен</div>
+            </div>
+        </section>
+
+        <!-- Зелёный код -->
+        <section class="code-section" id="green">
+            <div class="code-header code-green-header">
+                <span class="code-indicator">🟢</span>
+                <h3>Зелёный код</h3>
+                <span class="code-badge">Базовый уровень безопасности</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Все особые положения на объекте были аннулированы.</strong> У командования нет сведений о наличии какой-либо угрозы. Все стандартные процедуры соблюдаются в полном объёме.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li>Основное вооружение должно быть скрыто</li>
+                        <li>Разрешена выдача дополнительных <strong>станнеров</strong></li>
+                        <li>Применение огнестрельного оружия только с нелетальными боеприпасами</li>
+                        <li>Задержание только при непосредственном наблюдении правонарушения</li>
+                        <li>Требуется санкция для проведения задержаний</li>
+                        <li>Запрещены выборочные обыски без письменного разрешения</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li>Свободное перемещение по станции согласно уровню допуска</li>
+                        <li><strong>Рекомендовано</strong> включить режим "Координаты" на униформе</li>
+                        <li><strong>Запрещено</strong> разглашение конфиденциальной информации</li>
+                        <li>ЗОДы могут быть закрыты на болты при наличии обоснованной причины</li>
+                        <li>Хранилище открывается только при необходимости</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Синий код -->
+        <section class="code-section" id="blue">
+            <div class="code-header code-blue-header">
+                <span class="code-indicator">🔵</span>
+                <h3>Синий код</h3>
+                <span class="code-badge">Уровень средней угрозы</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Объявлено положение Синий код.</strong> Командование станции получило надежные данные о враждебной активности в расположении станции. Положение упрощает процедуры и оперативно-следственные мероприятия.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li>Разрешено получение <strong>нелетального вооружения</strong></li>
+                        <li><strong>Летальное вооружение</strong> — с санкции <strong>ГСБ</strong></li>
+                        <li>Допускается открытое ношение оружия</li>
+                        <li>Санкция не требуется при наличии достаточных оснований</li>
+                        <li>Усиленный контроль доступа на станцию</li>
+                        <li>Проверка всех входящих/выходящих</li>
+                        <li>Усиленный режим охраны критических систем</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li>Ограничение свободного перемещения по станции</li>
+                        <li>Соблюдение уровней допуска</li>
+                        <li>Обязательная идентификация при проходе через КПП</li>
+                        <li>Следовать указаниям службы безопасности</li>
+                        <li>Включить режим "Координаты" на униформе</li>
+                        <li>Избегать скоплений экипажа</li>
+                        <li>ЗОДы закрываются на контроль</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Янтарный код -->
+        <section class="code-section" id="amber">
+            <div class="code-header code-amber-header">
+                <span class="code-indicator">🟡</span>
+                <h3>Янтарный код</h3>
+                <span class="code-badge">Повышенный уровень угрозы</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Объявлено положение Янтарный код.</strong> Командование объявляет о значительных враждебных угрозах в расположении объекта. Сотрудники отдела СБ должны беспрекословно следовать процедурам усиления для дальнейшей ликвидации угрозы.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li>Разрешено получение <strong>летального вооружения</strong> из арсенала</li>
+                        <li>Ограничения на ношение оружия сняты</li>
+                        <li>Обязательное ношение защитного снаряжения</li>
+                        <li>Право на проведение специальных операций</li>
+                        <li>Усиленный контроль всех зон станции</li>
+                        <li><strong>Право на проведение обысков без санкции</strong></li>
+                        <li>Полная проверка всех помещений</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li>Строгий контроль перемещений по станции</li>
+                        <li>Обязательная идентификация при проходе через КПП</li>
+                        <li><strong>Запрет на нахождение в запретных зонах</strong></li>
+                        <li>Следовать указаниям службы безопасности</li>
+                        <li>Включить режим "Координаты" на униформе</li>
+                        <li>Избегать скопления экипажа</li>
+                        <li><strong>Быть готовым к эвакуации</strong></li>
+                        <li>ЗОДы закрываются на строгий контроль</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Красный код -->
+        <section class="code-section" id="red">
+            <div class="code-header code-red-header">
+                <span class="code-indicator">🔴</span>
+                <h3>Красный код</h3>
+                <span class="code-badge">Максимальная угроза</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Объявлено особое положение Красный код.</strong> Командование станции объявляет о начале военной операции и уведомляет о применении летальной силы для защиты объекта. Любой сотрудник обязан подчиняться приказам Офицеров СБ и Командования беспрекословно.</p>
+                <p class="alert-note"><strong>⚠️ Условия:</strong> Присутствие трёх и более угроз Янтарного уровня, либо угроза несущая опасность граничащую с полным уничтожением станции и экипажа.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li>Разрешено использование <strong>любого вооружения</strong> из арсенала</li>
+                        <li>Обязательное ношение полного комплекта защиты</li>
+                        <li><strong>Право на применение силы без предупреждения</strong></li>
+                        <li>Проведение специальных операций в приоритетном порядке</li>
+                        <li><strong>Право на проникновение в любые зоны станции</strong></li>
+                        <li>Право на применение любых средств подавления</li>
+                        <li><strong>Полный локдаун</strong> всех зон</li>
+                        <li>Блокировка всех выходов и входов</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li><strong>Полный запрет на свободное перемещение</strong></li>
+                        <li>Обязательная эвакуация в безопасные зоны</li>
+                        <li>Строгий контроль всех перемещений</li>
+                        <li><strong>Немедленное подчинение приказам СБ</strong></li>
+                        <li>Соблюдение полной тишины</li>
+                        <li>Готовность к экстренной эвакуации</li>
+                        <li>Полная эвакуация некритичного персонала</li>
+                        <li>Блокировка всех внешних коммуникаций</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="special-rules">
+                <h4>Особые положения</h4>
+                <ul>
+                    <li><strong>Приоритет</strong> всех ресурсов станции направлен на устранение угрозы</li>
+                    <li><strong>Все решения</strong> принимаются исключительно командованием</li>
+                    <li><strong>Отказ от выполнения</strong> приказов карается по максимально строгому регламенту</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Гамма код -->
+        <section class="code-section" id="gamma">
+            <div class="code-header code-gamma-header">
+                <span class="code-indicator">⚡</span>
+                <h3>Гамма код</h3>
+                <span class="code-badge">Особый режим максимальной мобилизации</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Объявлено положение Гамма код.</strong> Станция находится под серьёзной угрозой и может быть потеряна. Центральное Командование проводит значительное усиление сотрудников СБ. Сотрудники СБ получают неограниченное право на превентивные меры для защиты объекта.</p>
+                <p class="alert-note"><strong>⚠️ Важно:</strong> Устанавливается исключительно по решению Центрального Командования, при крупных угрозах в случае невозможности эвакуации персонала.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li>Разрешено использование <strong>любого вооружения</strong>, находящегося на станции</li>
+                        <li>Обязательное ношение полного комплекта защиты</li>
+                        <li>Право на применение любых спецсредств</li>
+                        <li><strong>Мобилизация всех сил СБ</strong></li>
+                        <li>Полная изоляция критических зон</li>
+                        <li>Право на проникновение в любые помещения</li>
+                        <li>Приоритетное использование ресурсов</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li>Строгий контроль всех перемещений</li>
+                        <li>Эвакуация в безопасные зоны</li>
+                        <li>Запрет на нахождение в запретных зонах</li>
+                        <li><strong>Полное подчинение приказам СБ</strong></li>
+                        <li><strong>Отключение личных коммуникаторов</strong></li>
+                        <li>Соблюдение режима тишины</li>
+                        <li>Готовность к эвакуации</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="special-rules">
+                <h4>Особые положения</h4>
+                <ul>
+                    <li><strong>Приоритет</strong> всех ресурсов станции направлен на устранение угрозы</li>
+                    <li><strong>Решения</strong> принимаются исключительно командованием</li>
+                    <li><strong>Содержание под стражей</strong> допускается без процессуальных формальностей</li>
+                </ul>
+            </div>
+            <div class="authority-box">
+                <strong>Право на объявление:</strong> Только Центральное Командование
+            </div>
+        </section>
+
+        <!-- Фиолетовый код -->
+        <section class="code-section" id="violet">
+            <div class="code-header code-violet-header">
+                <span class="code-indicator">🟣</span>
+                <h3>Фиолетовый код</h3>
+                <span class="code-badge">Биологическая/химическая угроза</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Объявлено положение Фиолетовый код.</strong> Имеется угроза локализованной эпидемической вспышки на территории объекта. Объявлен карантин с дальнейшей блокировкой средств внешней эвакуации. Персонал обязан выполнять инструкции сотрудников медицинского отдела в обязательном порядке.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li><strong>Обязательное использование средств химзащиты</strong></li>
+                        <li>Выдача <strong>индивидуальных средств защиты</strong> и <strong>защитных костюмов</strong></li>
+                        <li>Разрешено использование <strong>летального вооружения</strong></li>
+                        <li>Организация карантинных зон</li>
+                        <li>Изоляция заражённых участков</li>
+                        <li>Контроль распространения заражения</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li><strong>Немедленное надевание индивидуальных средств защиты</strong></li>
+                        <li>Соблюдение карантинного режима</li>
+                        <li>Выполнение указаний СБ</li>
+                        <li><strong>Запрещено:</strong> Снятие средств защиты без веских причин</li>
+                        <li><strong>Запрещено:</strong> Контакт с заражёнными зонами</li>
+                        <li>Полная изоляция заражённых зон</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="special-rules">
+                <h4>Особые положения</h4>
+                <ul>
+                    <li><strong>Приоритет</strong> отдан мерам по локализации угрозы</li>
+                    <li><strong>Все ресурсы</strong> направлены на устранение заражения</li>
+                    <li><strong>Медицинский отдел</strong> работает в усиленном режиме</li>
+                    <li><strong>Научные отделы</strong> мобилизованы для анализа угрозы</li>
+                </ul>
+            </div>
+            <div class="authority-box">
+                <strong>Право на объявление:</strong> Капитан станции • Центральное Командование • Главный врач
+            </div>
+        </section>
+
+        <!-- Жёлтый код -->
+        <section class="code-section" id="yellow">
+            <div class="code-header code-yellow-header">
+                <span class="code-indicator">🟠</span>
+                <h3>Жёлтый код</h3>
+                <span class="code-badge">Повреждения станции</span>
+            </div>
+            <div class="code-description">
+                <p><strong>Объявлено положение Жёлтый код.</strong> Имеется серьезная угроза для технического функционирования объекта. Персонал обязан выполнять инструкции инженерного персонала в обязательном порядке.</p>
+            </div>
+            <div class="code-details">
+                <div class="detail-column">
+                    <h4>Регламент СБ</h4>
+                    <ul>
+                        <li>Разрешено получение <strong>нелетального вооружения</strong> из арсенала</li>
+                        <li>Обязательное ношение защитного снаряжения</li>
+                        <li>Право на применение спецсредств по ситуации</li>
+                        <li>Усиленный контроль критических зон</li>
+                        <li>Организация дополнительных постов наблюдения</li>
+                        <li>Проведение профилактических проверок</li>
+                        <li>Мониторинг коммуникаций</li>
+                    </ul>
+                </div>
+                <div class="detail-column">
+                    <h4>Регламент экипажа</h4>
+                    <ul>
+                        <li>Ограничение доступа в некоторые зоны</li>
+                        <li>Обязательная идентификация при проходе</li>
+                        <li>Следование указаниям службы безопасности</li>
+                        <li>Поддержание повышенной бдительности</li>
+                        <li>Информирование СБ о подозрительных действиях</li>
+                        <li>Готовность к повышению уровня угрозы</li>
+                        <li>Включение "Маячка Слежения"</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="special-rules">
+                <h4>Особые положения</h4>
+                <ul>
+                    <li><strong>Приоритет:</strong> Предотвращение эскалации угрозы</li>
+                    <li><strong>Взаимодействие:</strong> Усиление координации между отделами</li>
+                    <li><strong>Готовность:</strong> Поддержание повышенной готовности к переходу на более высокий уровень угрозы</li>
+                </ul>
+            </div>
+            <div class="authority-box">
+                <strong>Право на объявление:</strong> Капитан станции • Центральное Командование • Старший инженер
+            </div>
+        </section>
+
+        <!-- Таблица угроз антагонистов -->
+        <section class="content-block">
+            <h3>Таблица кодов для антагонистов</h3>
+            <div class="table-container">
+                <table class="threat-table">
+                    <thead>
+                        <tr>
+                            <th>Тип угрозы</th>
+                            <th>Код при подозрении</th>
+                            <th>Код при подтверждении</th>
+                            <th>Уровень опасности</th>
+                            <th>Код после устранения</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Абдуктор</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Еретик</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Еретик (Возвышенный)</td><td class="amber-code">Янтарный</td><td class="red-code">Красный</td><td>★★★★☆</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Парадоксальный клон</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★☆☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Кортикальный паразит</td><td class="blue-code">Синий</td><td class="violet-code">Фиолетовый</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Вор</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★☆☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Кошмар</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Культист Нар'Си</td><td class="green-code">Зелёный</td><td class="amber-code">Янтарный</td><td>★★★★☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Пауки Террора</td><td class="blue-code">Синий</td><td class="red-code">Красный</td><td>★★★★★</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Агрессивные фауна</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★☆☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Ниндзя клана Паука</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★★☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Агент Синдиката</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Агент Синдиката (Хиджак)</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★★★☆</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Истинный вампир</td><td class="green-code">Зелёный</td><td class="amber-code">Янтарный</td><td>★★★☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Генокрад</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★★☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Пираты</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★★☆☆</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Революция</td><td class="green-code">Зелёный</td><td class="amber-code">Янтарный</td><td>★★★☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Маг</td><td class="blue-code">Синий</td><td class="amber-code">Янтарный</td><td>★★★★☆</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Блоб</td><td class="blue-code">Синий</td><td class="red-code">Красный</td><td>★★★★★</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Сбойный ИИ</td><td class="green-code">Зелёный</td><td class="red-code">Красный</td><td>★★★★★</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Ксеноморф</td><td class="blue-code">Синий</td><td class="red-code">Красный</td><td>★★★★★</td><td class="violet-code">Фиолетовый</td></tr>
+                        <tr><td>Космический дракон</td><td class="blue-code">Синий</td><td class="red-code">Красный</td><td>★★★★★</td><td class="yellow-code">Жёлтый</td></tr>
+                        <tr><td>Ядерные оперативники</td><td class="blue-code">Синий</td><td class="red-code">Красный</td><td>★★★★★</td><td class="red-code">Красный</td></tr>
+                        <tr><td>Одинокий оперативник</td><td class="blue-code">Синий</td><td class="red-code">Красный</td><td>★★★★★</td><td class="red-code">Красный</td></tr>
+                        <tr><td>Кудзу</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Работорговцы</td><td class="green-code">Зелёный</td><td class="blue-code">Синий</td><td>★★☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Морф</td><td class="blue-code">Синий</td><td class="violet-code">Фиолетовый</td><td>★★★☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Хедкрабы</td><td class="blue-code">Синий</td><td class="violet-code">Фиолетовый</td><td>★★★☆☆</td><td class="green-code">Зелёный</td></tr>
+                        <tr><td>Дьявол</td><td class="green-code">Зелёный</td><td class="green-code">Зелёный</td><td>☆☆☆☆☆</td><td class="green-code">Зелёный</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note-box">
+                <strong>📌 Определение уровня угрозы антагониста:</strong> Если при <strong>подтверждении</strong> антагониста объявляется <strong>красный код</strong> — значит это антагонист <strong>Красного уровня угрозы</strong>, если объявляется <strong>синий код</strong> — значит это антагонист <strong>Синего уровня</strong> угрозы и так далее.
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Space Station 14 Wiki • Информационный портал сервера</p>
+        <p class="small">НаноТрейзен © 2501</p>
+    </footer>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0be4a3d2a719f70',t:'MTc4MTQ5MjA2NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
