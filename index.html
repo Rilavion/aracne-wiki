@@ -1,371 +1,763 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SS14 Quick Ref</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SS14 Справочник</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.5; }
+a { color: #58a6ff; }
+
+/* SIDEBAR */
+.sidebar { width: 200px; background: #161b22; border-right: 1px solid #30363d; padding: 1rem; position: fixed; height: 100vh; overflow-y: auto; }
+.sidebar h1 { font-size: 0.95rem; margin-bottom: 0.75rem; color: #58a6ff; }
+.toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; cursor: pointer; font-size: 0.85rem; color: #8b949e; }
+.toggle input { width: 16px; height: 16px; accent-color: #3fb950; }
+.nav a { display: block; padding: 7px 10px; color: #8b949e; text-decoration: none; border-radius: 6px; margin-bottom: 3px; font-size: 0.85rem; }
+.nav a:hover { background: #21262d; color: #fff; }
+.nav a.active { background: rgba(88, 166, 255, 0.15); color: #58a6ff; }
+
+/* CONTENT */
+.content { margin-left: 200px; padding: 1rem 1.5rem; }
+.section { margin-bottom: 1.5rem; }
+h2 { font-size: 1rem; color: #58a6ff; margin-bottom: 0.75rem; border-bottom: 1px solid #30363d; padding-bottom: 6px; }
+h3 { font-size: 0.9rem; color: #8b949e; margin: 1rem 0 0.5rem; }
+
+/* CODE CARDS */
+.code-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px; margin-bottom: 1rem; }
+.code-card { background: #21262d; border: 1px solid #30363d; border-radius: 6px; overflow: hidden; }
+.code-header { padding: 6px 10px; font-weight: 600; font-size: 0.85rem; }
+.code-info { padding: 6px 10px; }
+.code-info p { font-size: 0.75rem; color: #8b949e; margin-bottom: 2px; }
+
+/* CODE COLORS */
+.g { background: rgba(63, 185, 80, 0.2); color: #3fb950; }
+.b { background: rgba(88, 166, 255, 0.2); color: #58a6ff; }
+.a { background: rgba(210, 153, 34, 0.2); color: #d29922; }
+.r { background: rgba(248, 81, 73, 0.2); color: #f85149; }
+.v { background: rgba(163, 113, 247, 0.2); color: #a371f7; }
+.y { background: rgba(227, 179, 65, 0.2); color: #e3b341; }
+.gamma-bg { background: rgba(255, 165, 0, 0.2); color: #ffa500; }
+
+/* CODE DETAILS */
+.code-detail { background: #21262d; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 1rem; overflow: hidden; }
+.code-detail-header { padding: 10px 12px; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid #30363d; }
+.code-detail-body { padding: 10px 12px; }
+.code-detail-body p { font-size: 0.8rem; color: #8b949e; margin-bottom: 4px; }
+.code-detail-body strong { color: #c9d1d9; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.detail-col h4 { font-size: 0.8rem; color: #3fb950; margin-bottom: 6px; }
+.detail-col ul { list-style: none; }
+.detail-col li { font-size: 0.75rem; color: #8b949e; padding: 3px 0; padding-left: 12px; position: relative; }
+.detail-col li::before { content: '▹'; position: absolute; left: 0; color: #3fb950; font-size: 0.7rem; }
+.special-rules { margin-top: 10px; padding: 8px; background: rgba(248, 81, 73, 0.1); border-radius: 6px; }
+.special-rules h4 { color: #f85149; margin-bottom: 6px; }
+.special-rules li { color: #f85149; }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+th, td { padding: 6px 8px; text-align: left; border: 1px solid #30363d; }
+th { background: #21262d; font-weight: 600; color: #c9d1d9; }
+.wrap { overflow-x: auto; border-radius: 6px; border: 1px solid #30363d; }
+
+/* TABLE ROW COLORS - enabled by default */
+.row-g { background: rgba(63, 185, 80, 0.1) !important; }
+.row-b { background: rgba(88, 166, 255, 0.1) !important; }
+.row-a { background: rgba(210, 153, 34, 0.1) !important; }
+.row-r { background: rgba(248, 81, 73, 0.1) !important; }
+.row-v { background: rgba(163, 113, 247, 0.1) !important; }
+.row-y { background: rgba(227, 179, 65, 0.1) !important; }
+
+/* DISABLED COLORS */
+.off .row-g, .off .row-b, .off .row-a, .off .row-r, .off .row-v, .off .row-y { background: transparent !important; }
+
+/* INFO BOX */
+.info-box { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
+.info-box strong { color: #3fb950; }
+.info-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.info-item { padding: 4px 10px; background: #0d1117; border-radius: 4px; font-size: 0.75rem; }
+
+/* LEGEND */
+.legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.legend span { padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; }
+
+/* MODIFIERS */
+.mods { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mod-group { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; }
+.mod-group h3 { font-size: 0.85rem; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #30363d; margin-top: 0; }
+.pos h3 { color: #3fb950; }
+.neg h3 { color: #f85149; }
+.mod-item { padding: 4px 0; font-size: 0.75rem; color: #8b949e; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.mod-item:last-child { border: none; }
+.mod-code { display: inline-block; padding: 1px 5px; background: #0d1117; border-radius: 3px; font-size: 0.7rem; margin-right: 6px; font-weight: 600; }
+.pos .mod-code { color: #3fb950; }
+.neg .mod-code { color: #f85149; }
+.mod-effect { display: inline-block; padding: 2px 6px; background: #0d1117; border-radius: 10px; font-size: 0.7rem; margin-top: 4px; font-weight: 600; }
+.pos .mod-effect { color: #3fb950; }
+.neg .mod-effect { color: #f85149; }
+
+/* ROLES */
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.role-card { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; }
+.role-title { font-weight: 600; color: #58a6ff; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #30363d; font-size: 0.85rem; }
+.role-card p { font-size: 0.75rem; color: #8b949e; margin-bottom: 3px; }
+
+/* HIERARCHY */
+.hier { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; margin-top: 8px; }
+.hier h3 { margin-top: 0; color: #d29922; font-size: 0.85rem; }
+.hier div { font-family: monospace; font-size: 0.8rem; }
+
+/* ENEMIES */
+.enemies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.enemy { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; }
+.enemy h4 { font-size: 0.8rem; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #30363d; }
+.enemy p { font-size: 0.75rem; color: #8b949e; }
+.enemy:nth-child(1) h4 { color: #58a6ff; }
+.enemy:nth-child(2) h4 { color: #d29922; }
+.enemy:nth-child(3) h4 { color: #f85149; }
+
+/* CALCULATOR */
+.calc { background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 12px; max-width: 350px; }
+.calc label { display: block; font-size: 0.8rem; color: #8b949e; margin-bottom: 4px; }
+.calc select { width: 100%; padding: 6px; background: #0d1117; border: 1px solid #30363d; border-radius: 4px; color: #fff; margin-bottom: 8px; }
+.calc-check { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.calc-check label { display: flex; align-items: center; gap: 3px; padding: 3px 6px; background: #0d1117; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+.calc button { width: 100%; padding: 8px; background: #3fb950; border: none; border-radius: 4px; color: #000; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+.calc button:hover { opacity: 0.9; }
+.result { margin-top: 8px; padding: 10px; background: #0d1117; border-radius: 4px; text-align: center; display: none; font-size: 0.85rem; }
+.result.show { display: block; }
+
+/* ARTICLE */
+.art-table { font-size: 0.75rem; }
+.art-table td { padding: 5px 7px; }
+.art-table .l { background: #21262d; color: #d29922; font-weight: 700; }
+.art-table .c1 { color: #3fb950; }
+.art-table .c2 { color: #58a6ff; }
+.art-table .c3 { color: #a371f7; }
+.art-table .c4 { color: #d29922; }
+.art-table .c5 { color: #f85149; }
+
+/* PRINCIPLES */
+.principles { display: flex; gap: 12px; margin-bottom: 12px; }
+.principle { flex: 1; background: #21262d; border: 1px solid #30363d; border-radius: 6px; padding: 10px; text-align: center; }
+.principle-icon { font-size: 1.5rem; margin-bottom: 4px; }
+.principle h4 { font-size: 0.8rem; color: #3fb950; margin-bottom: 4px; }
+.principle p { font-size: 0.75rem; color: #8b949e; }
+
+/* AUTHORITY */
+.authority { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.auth-item { padding: 5px 10px; background: #21262d; border: 1px solid #30363d; border-radius: 4px; font-size: 0.8rem; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 1rem; color: #8b949e; font-size: 0.75rem; border-top: 1px solid #30363d; margin-top: 2rem; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #30363d; }
+  .content { margin-left: 0; padding: 1rem; }
+  .mods { grid-template-columns: 1fr; }
+  .enemies { grid-template-columns: 1fr; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .principles { flex-direction: column; }
+}
+</style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h1>⚡ Быстрый справочник</h1>
-            <label class="color-toggle">
-                <input type="checkbox" id="colorToggle" checked>
-                <span>🎨 Цвета</span>
-            </label>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <a href="#codes" class="nav-item">📢 Коды</a>
-            <a href="#threats" class="nav-item">⚠️ Угрозы</a>
-            <a href="#articles" class="nav-item">⚖️ Статьи</a>
-            <a href="#modifiers" class="nav-item">📋 Модификаторы</a>
-            <a href="#roles" class="nav-item">👔 СБ</a>
-        </nav>
 
-        <div class="sidebar-footer">
-            <small>SS14 • Nanotrasen © 2501</small>
+<div class="sidebar">
+  <h1>⚡ SS14 Справочник</h1>
+  
+  <label class="toggle">
+    <input type="checkbox" id="colorToggle" checked onchange="toggleColors()">
+    <span>🎨 Цвета</span>
+  </label>
+  
+  <nav class="nav">
+    <a href="#codes">📢 Коды тревоги</a>
+    <a href="#threats">⚠️ Угрозы</a>
+    <a href="#articles">⚖️ Статьи КЗ</a>
+    <a href="#modifiers">📋 Модификаторы</a>
+    <a href="#roles">👔 Должности СБ</a>
+    <a href="#enemies">☠️ Враги</a>
+    <a href="#calc">🧮 Калькулятор</a>
+  </nav>
+</div>
+
+<div class="content">
+
+<!-- ===== КОДЫ ТРЕВОГИ ===== -->
+<section id="codes" class="section">
+  <h2>📢 Коды тревоги</h2>
+  
+  <div class="info-box">
+    <strong>Порядок правоприменения:</strong> Центральное Командование → НРП Уровня тревоги → НРП отделов → Космический Закон
+  </div>
+  
+  <div class="principles">
+    <div class="principle"><div class="principle-icon">⚖️</div><h4>Пропорциональность</h4><p>Уровень угрозы соответствует характеру опасности</p></div>
+    <div class="principle"><div class="principle-icon">⏱️</div><h4>Своевременность</h4><p>Объявление кода производится незамедлительно</p></div>
+  </div>
+  
+  <div class="authority">
+    <div class="auth-item">👤 Капитан</div>
+    <div class="auth-item">🏢 ЦК</div>
+    <div class="auth-item">🛡️ ГСБ</div>
+    <div class="auth-item">📋 НТР</div>
+  </div>
+
+  <!-- ЗЕЛЁНЫЙ -->
+  <div class="code-detail">
+    <div class="code-detail-header g">🟢 ЗЕЛЁНЫЙ КОД — Базовый уровень безопасности</div>
+    <div class="code-detail-body">
+      <p>Все особые положения на объекте были аннулированы. У командования нет сведений о наличии какой-либо угрозы.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li>Основное вооружение должно быть скрыто</li>
+            <li>Разрешена выдача <strong>станнеров</strong></li>
+            <li>Огнестрельное оружие только с нелетальными боеприпасами</li>
+            <li>Задержание только при непосредственном наблюдении</li>
+            <li>Требуется санкция для задержаний</li>
+            <li>Запрещены обыски без письменного разрешения</li>
+          </ul>
         </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li>Свободное перемещение по уровню допуска</li>
+            <li><strong>Рекомендовано:</strong> режим "Координаты"</li>
+            <li><strong>Запрещено:</strong> разглашение конфиденциальной информации</li>
+            <li>ЗОДы закрыты на болты при обоснованной причине</li>
+            <li>Хранилище открывается только при необходимости</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, Центральное Командование</p>
     </div>
+  </div>
 
-    <main class="content">
-        <!-- КОДЫ ТРЕВОГИ -->
-        <section id="codes" class="section">
-            <h2>📢 Коды тревоги</h2>
-            
-            <div class="code-cards">
-                <div class="code-card code-green">
-                    <div class="code-header">🟢 ЗЕЛЁНЫЙ</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Стандартная работа</p>
-                        <p><strong>СБ:</strong> Скрытое оружие, станнеры</p>
-                        <p><strong>Аресты:</strong> Только при наблюдении</p>
-                    </div>
-                </div>
-                
-                <div class="code-card code-blue">
-                    <div class="code-header">🔵 СИНИЙ</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Враждебная активность</p>
-                        <p><strong>СБ:</strong> Открытое оружие, нелетальное</p>
-                        <p><strong>Аресты:</strong> Без санкции при основаниях</p>
-                    </div>
-                </div>
-                
-                <div class="code-card code-amber">
-                    <div class="code-header">🟡 ЯНТАРНЫЙ</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Значительные угрозы</p>
-                        <p><strong>СБ:</strong> Летальное оружие, обыски без санкции</p>
-                        <p><strong>Экипаж:</strong> Готовность к эвакуации</p>
-                    </div>
-                </div>
-                
-                <div class="code-card code-red">
-                    <div class="code-header">🔴 КРАСНЫЙ</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Военная ситуация</p>
-                        <p><strong>СБ:</strong> Любое оружие, сила без предупреждения</p>
-                        <p><strong>Экипаж:</strong> Полный локдаун</p>
-                    </div>
-                </div>
-                
-                <div class="code-card code-gamma">
-                    <div class="code-header">⚡ ГАММА</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Критическая угроза</p>
-                        <p><strong>СБ:</strong> Неограниченные полномочия</p>
-                        <p><strong>Только:</strong> По приказу ЦК</p>
-                    </div>
-                </div>
-                
-                <div class="code-card code-violet">
-                    <div class="code-header">🟣 ФИОЛЕТОВЫЙ</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Био/хим угроза</p>
-                        <p><strong>СБ:</strong> Средства химзащиты</p>
-                        <p><strong>Мед:</strong> Карантинные зоны</p>
-                    </div>
-                </div>
-                
-                <div class="code-card code-yellow">
-                    <div class="code-header">🟠 ЖЁЛТЫЙ</div>
-                    <div class="code-info">
-                        <p><strong>Условие:</strong> Повреждения станции</p>
-                        <p><strong>СБ:</strong> Нелетальное оружие</p>
-                        <p><strong>Инж:</strong> Ремонтные работы</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- СИНИЙ -->
+  <div class="code-detail">
+    <div class="code-detail-header b">🔵 СИНИЙ КОД — Уровень средней угрозы</div>
+    <div class="code-detail-body">
+      <p>Командование станции получило надежные данные о враждебной активности. Положение упрощает процедуры.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li>Разрешено <strong>нелетальное вооружение</strong></li>
+            <li><strong>Летальное</strong> — с санкции ГСБ</li>
+            <li>Открытое ношение оружия допускается</li>
+            <li>Санкция не требуется при достаточных основаниях</li>
+            <li>Усиленный контроль доступа</li>
+            <li>Проверка всех входящих/выходящих</li>
+            <li>Усиленный режим охраны критических систем</li>
+          </ul>
+        </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li>Ограничение свободного перемещения</li>
+            <li>Соблюдение уровней допуска</li>
+            <li>Обязательная идентификация при проходе через КПП</li>
+            <li>Следовать указаниям СБ</li>
+            <li>Включить режим "Координаты"</li>
+            <li>Избегать скоплений экипажа</li>
+            <li>ЗОДы закрываются на контроль</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Глава СБ</p>
+    </div>
+  </div>
 
-        <!-- ТАБЛИЦА УГРОЗ -->
-        <section id="threats" class="section">
-            <h2>⚠️ Уровни угроз антагонистов</h2>
-            
-            <div class="table-wrapper">
-                <table class="colored-table">
-                    <thead>
-                        <tr>
-                            <th>Антагонист</th>
-                            <th>Подозрение</th>
-                            <th>Подтверждение</th>
-                            <th>Опасность</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="row-amber"><td>Еретик (Возвышенный)</td><td>Янтарный</td><td>Красный</td><td>★★★★☆</td></tr>
-                        <tr class="row-amber"><td>Культист Нар'Си</td><td>Зелёный</td><td>Янтарный</td><td>★★★★☆</td></tr>
-                        <tr class="row-amber"><td>Агент Синдиката (Хиджак)</td><td>Синий</td><td>Янтарный</td><td>★★★★☆</td></tr>
-                        <tr class="row-amber"><td>Маг</td><td>Синий</td><td>Янтарный</td><td>★★★★☆</td></tr>
-                        <tr class="row-blue"><td>Абдуктор</td><td>Синий</td><td>Янтарный</td><td>★★☆☆☆</td></tr>
-                        <tr class="row-blue"><td>Еретик</td><td>Синий</td><td>Янтарный</td><td>★★☆☆☆</td></tr>
-                        <tr class="row-blue"><td>Кортикальный паразит</td><td>Синий</td><td>Фиолетовый</td><td>★★☆☆☆</td></tr>
-                        <tr class="row-blue"><td>Ниндзя клана Паука</td><td>Синий</td><td>Янтарный</td><td>★★★☆☆</td></tr>
-                        <tr class="row-blue"><td>Агент Синдиката</td><td>Зелёный</td><td>Синий</td><td>★★☆☆☆</td></tr>
-                        <tr class="row-blue"><td>Истинный вампир</td><td>Зелёный</td><td>Янтарный</td><td>★★★☆☆</td></tr>
-                        <tr class="row-blue"><td>Генокрад</td><td>Синий</td><td>Янтарный</td><td>★★★☆☆</td></tr>
-                        <tr class="row-red"><td>Пауки Террора</td><td>Синий</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-red"><td>Блоб</td><td>Синий</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-red"><td>Сбойный ИИ</td><td>Зелёный</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-red"><td>Ксеноморф</td><td>Синий</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-red"><td>Космический дракон</td><td>Синий</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-red"><td>Ядерные оперативники</td><td>Синий</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-red"><td>Одинокий оперативник</td><td>Синий</td><td>Красный</td><td>★★★★★</td></tr>
-                        <tr class="row-green"><td>Вор</td><td>Зелёный</td><td>Синий</td><td>★☆☆☆☆</td></tr>
-                        <tr class="row-green"><td>Кошмар</td><td>Зелёный</td><td>Синий</td><td>★★☆☆☆</td></tr>
-                        <tr class="row-green"><td>Агрессивные фауна</td><td>Зелёный</td><td>Синий</td><td>★☆☆☆☆</td></tr>
-                        <tr class="row-green"><td>Пираты</td><td>Синий</td><td>Янтарный</td><td>★★★☆☆</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+  <!-- ЯНТАРНЫЙ -->
+  <div class="code-detail">
+    <div class="code-detail-header a">🟡 ЯНТАРНЫЙ КОД — Повышенный уровень угрозы</div>
+    <div class="code-detail-body">
+      <p>Командование объявляет о значительных враждебных угрозах. Сотрудники СБ следуют процедурам усиления.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li>Разрешено <strong>летальное вооружение</strong> из арсенала</li>
+            <li>Ограничения на ношение оружия сняты</li>
+            <li>Обязательное ношение защитного снаряжения</li>
+            <li>Право на проведение <strong>специальных операций</strong></li>
+            <li>Усиленный контроль всех зон</li>
+            <li><strong>Обыски без санкции</strong></li>
+            <li>Полная проверка всех помещений</li>
+          </ul>
+        </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li>Строгий контроль перемещений</li>
+            <li>Обязательная идентификация при проходе через КПП</li>
+            <li><strong>Запрет</strong> нахождения в запретных зонах</li>
+            <li>Следовать указаниям СБ</li>
+            <li>Включить режим "Координаты"</li>
+            <li>Избегать скопления экипажа</li>
+            <li><strong>Готовность к эвакуации</strong></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Глава СБ</p>
+    </div>
+  </div>
 
-        <!-- СТАТЬИ -->
-        <section id="articles" class="section">
-            <h2>⚖️ Космический Закон</h2>
-            
-            <div class="table-wrapper">
-                <table class="colored-table articles-table">
-                    <thead>
-                        <tr>
-                            <th>Код</th>
-                            <th>1XX</th>
-                            <th>2XX</th>
-                            <th>3XX</th>
-                            <th>4XX</th>
-                            <th>5XX</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="label-col">X00</td>
-                            <td class="cell-1">Ущерб</td>
-                            <td class="cell-2">Мелкий саботаж</td>
-                            <td class="cell-3">Саботаж</td>
-                            <td class="cell-4">Гранд. саботаж</td>
-                            <td class="cell-5">Вопиющий</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X01</td>
-                            <td class="cell-1">Неподобание</td>
-                            <td class="cell-2">Антисоц.</td>
-                            <td class="cell-3">Суицид</td>
-                            <td class="cell-4">Похищение</td>
-                            <td class="cell-5">Заложники</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X02</td>
-                            <td class="cell-1">Рукоприкладство</td>
-                            <td class="cell-2">Драка</td>
-                            <td class="cell-3">Увечья</td>
-                            <td class="cell-4">Тяжкие увечья</td>
-                            <td class="cell-5">Убийство</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X03</td>
-                            <td class="cell-1">—</td>
-                            <td class="cell-2">Неприказ</td>
-                            <td class="cell-3">Сопр. власти</td>
-                            <td class="cell-4">Мятеж</td>
-                            <td class="cell-5">Контракт</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X04</td>
-                            <td class="cell-1">—</td>
-                            <td class="cell-2">Контрабанда</td>
-                            <td class="cell-3">Запрещ. контраб.</td>
-                            <td class="cell-4">Враждебная</td>
-                            <td class="cell-5">—</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X05</td>
-                            <td class="cell-1">Преследование</td>
-                            <td class="cell-2">Домогательства</td>
-                            <td class="cell-3">Понуждение</td>
-                            <td class="cell-4">Изнасилование</td>
-                            <td class="cell-5">—</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X06</td>
-                            <td class="cell-1">—</td>
-                            <td class="cell-2">Кража отдела</td>
-                            <td class="cell-3">Кража станции</td>
-                            <td class="cell-4">Крупная кража</td>
-                            <td class="cell-5">Крит. объекты</td>
-                        </tr>
-                        <tr>
-                            <td class="label-col">X07</td>
-                            <td class="cell-1">Пребывание</td>
-                            <td class="cell-2">Пребывание в ЗОД</td>
-                            <td class="cell-3">Вторжение</td>
-                            <td class="cell-4">Вторжение в ЗОД</td>
-                            <td class="cell-5">—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+  <!-- КРАСНЫЙ -->
+  <div class="code-detail">
+    <div class="code-detail-header r">🔴 КРАСНЫЙ КОД — Максимальная угроза</div>
+    <div class="code-detail-body">
+      <p>Начало военной операции. Применение летальной силы. Любой сотрудник обязан подчиняться приказам СБ беспрекословно.</p>
+      <p style="font-size:0.75rem;color:#f85149;margin-bottom:8px;"><strong>Условие:</strong> Присутствие 3+ угроз Янтарного уровня или угроза граничащая с полным уничтожением.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li><strong>Любое вооружение</strong> из арсенала</li>
+            <li>Обязательное ношение полного комплекта защиты</li>
+            <li><strong>Сила без предупреждения</strong></li>
+            <li>Специальные операции в приоритетном порядке</li>
+            <li><strong>Проникновение в любые зоны</strong></li>
+            <li>Любые средства подавления</li>
+            <li><strong>Полный локдаун</strong> всех зон</li>
+            <li>Блокировка всех выходов и входов</li>
+          </ul>
+        </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li><strong>Полный запрет</strong> на свободное перемещение</li>
+            <li>Обязательная эвакуация в безопасные зоны</li>
+            <li>Строгий контроль всех перемещений</li>
+            <li><strong>Немедленное подчинение</strong> приказам СБ</li>
+            <li>Соблюдение полной тишины</li>
+            <li>Готовность к экстренной эвакуации</li>
+            <li>Полная эвакуация некритичного персонала</li>
+            <li>Блокировка всех внешних коммуникаций</li>
+          </ul>
+        </div>
+      </div>
+      <div class="special-rules">
+        <h4>Особые положения</h4>
+        <ul>
+          <li><strong>Приоритет</strong> всех ресурсов на устранение угрозы</li>
+          <li><strong>Все решения</strong> принимаются только командованием</li>
+          <li><strong>Отказ от приказов</strong> карается по максимально строгому регламенту</li>
+        </ul>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Глава СБ</p>
+    </div>
+  </div>
 
-            <div class="severity-legend">
-                <div class="legend-item level-1">1XX: Штраф до 500₽ / до 5 мин</div>
-                <div class="legend-item level-2">2XX: Штраф 500-1000₽ / 5-10 мин</div>
-                <div class="legend-item level-3">3XX: Штраф 1500-3000₽ / 15-30 мин / каторга</div>
-                <div class="legend-item level-4">4XX: 30-60 мин / пермабриг</div>
-                <div class="legend-item level-5">5XX: Пермабриг / импланты / казнь</div>
-            </div>
-        </section>
+  <!-- ГАММА -->
+  <div class="code-detail">
+    <div class="code-detail-header gamma-bg">⚡ ГАММА КОД — Особый режим максимальной мобилизации</div>
+    <div class="code-detail-body">
+      <p>Станция под серьёзной угрозой и может быть потеряна. ЦК проводит значительное усиление СБ. Неограниченные превентивные меры.</p>
+      <p style="font-size:0.75rem;color:#ffa500;margin-bottom:8px;"><strong>Важно:</strong> Только по решению ЦК при крупных угрозах и невозможности эвакуации.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li><strong>Любое вооружение</strong> на станции</li>
+            <li>Полный комплект защиты</li>
+            <li>Любые спецсредства</li>
+            <li><strong>Мобилизация всех сил СБ</strong></li>
+            <li>Полная изоляция критических зон</li>
+            <li>Проникновение в любые помещения</li>
+            <li>Приоритетное использование ресурсов</li>
+          </ul>
+        </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li>Строгий контроль всех перемещений</li>
+            <li>Эвакуация в безопасные зоны</li>
+            <li>Запрет нахождения в запретных зонах</li>
+            <li><strong>Полное подчинение</strong> приказам СБ</li>
+            <li><strong>Отключение</strong> личных коммуникаторов</li>
+            <li>Соблюдение режима тишины</li>
+            <li>Готовность к эвакуации</li>
+          </ul>
+        </div>
+      </div>
+      <div class="special-rules">
+        <h4>Особые положения</h4>
+        <ul>
+          <li><strong>Содержание под стражей</strong> допускается без процессуальных формальностей</li>
+        </ul>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Только Центральное Командование</p>
+    </div>
+  </div>
 
-        <!-- МОДИФИКАТОРЫ -->
-        <section id="modifiers" class="section">
-            <h2>📋 Модификаторы</h2>
-            
-            <div class="mod-columns">
-                <div class="mod-group positive">
-                    <h3>✅ Оправдательные</h3>
-                    <div class="mod-item"><span class="mod-code">П-1</span> Сотрудничество: <strong>-50%</strong></div>
-                    <div class="mod-item"><span class="mod-code">П-2</span> Отсутствие умысла: <strong>-1 уровень</strong></div>
-                    <div class="mod-item"><span class="mod-code">П-3</span> Критическая необходимость: <strong>Снятие</strong></div>
-                    <div class="mod-item"><span class="mod-code">П-4</span> Вражеская конвертация: <strong>Снятие</strong></div>
-                </div>
-                
-                <div class="mod-group negative">
-                    <h3>❌ Отягощающие</h3>
-                    <div class="mod-item"><span class="mod-code">О-1</span> Рецидив: <strong>+10 мин</strong></div>
-                    <div class="mod-item"><span class="mod-code">О-2</span> Должностное: <strong>+15 мин</strong></div>
-                    <div class="mod-item"><span class="mod-code">О-3</span> Против должностных: <strong>+50%</strong></div>
-                    <div class="mod-item"><span class="mod-code">О-4</span> Помеха расследованию: <strong>+50%</strong></div>
-                    <div class="mod-item"><span class="mod-code">О-5</span> Сопротивление аресту: <strong>+50%</strong></div>
-                    <div class="mod-item"><span class="mod-code">О-6</span> Критический рецидив: <strong>+100%</strong></div>
-                    <div class="mod-item"><span class="mod-code">О-7</span> Пособничество: <strong>+90%</strong></div>
-                </div>
-            </div>
-        </section>
+  <!-- ФИОЛЕТОВЫЙ -->
+  <div class="code-detail">
+    <div class="code-detail-header v">🟣 ФИОЛЕТОВЫЙ КОД — Биологическая/химическая угроза</div>
+    <div class="code-detail-body">
+      <p>Угроза локализованной эпидемической вспышки. Объявлен карантин. Персонал выполняет инструкции медицинского отдела.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li><strong>Обязательные средства химзащиты</strong></li>
+            <li>Выдача <strong>средств защиты</strong> и <strong>защитных костюмов</strong></li>
+            <li>Разрешено <strong>летальное вооружение</strong></li>
+            <li>Организация карантинных зон</li>
+            <li>Изоляция заражённых участков</li>
+            <li>Контроль распространения заражения</li>
+          </ul>
+        </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li><strong>Немедленное</strong> надевание средств защиты</li>
+            <li>Соблюдение карантинного режима</li>
+            <li>Выполнение указаний СБ</li>
+            <li><strong>Запрещено:</strong> снятие средств защиты без веских причин</li>
+            <li><strong>Запрещено:</strong> контакт с заражёнными зонами</li>
+            <li>Полная изоляция заражённых зон</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Главный врач</p>
+    </div>
+  </div>
 
-        <!-- ДОЛЖНОСТИ СБ -->
-        <section id="roles" class="section">
-            <h2>👔 Должности СБ</h2>
-            
-            <div class="roles-grid">
-                <div class="role-card">
-                    <div class="role-title">🎖️ ГСБ</div>
-                    <div class="role-info">
-                        <p>• Командует отделом</p>
-                        <p>• Выдаёт разрешения на оружие</p>
-                        <p>• Объявляет коды</p>
-                        <p>• Имеет пинпоинт НЯД</p>
-                    </div>
-                </div>
-                
-                <div class="role-card">
-                    <div class="role-title">🔒 Смотритель</div>
-                    <div class="role-info">
-                        <p>• Контроль арсенала и брига</p>
-                        <p>• Учёт вооружения</p>
-                        <p>• Командует при отсутствии ГСБ</p>
-                    </div>
-                </div>
-                
-                <div class="role-card">
-                    <div class="role-title">🛡️ Офицер</div>
-                    <div class="role-info">
-                        <p>• Патрулирование</p>
-                        <p>• Аресты до 3XX статей</p>
-                        <p>• До 4 единиц оружия</p>
-                    </div>
-                </div>
-                
-                <div class="role-card">
-                    <div class="role-title">🪖 Кадет</div>
-                    <div class="role-info">
-                        <p>• Только с напарником!</p>
-                        <p>• Нет летального оружия</p>
-                        <p>• Нет экзо-костюмов</p>
-                    </div>
-                </div>
-            </div>
+  <!-- ЖЁЛТЫЙ -->
+  <div class="code-detail">
+    <div class="code-detail-header y">🟠 ЖЁЛТЫЙ КОД — Повреждения станции</div>
+    <div class="code-detail-body">
+      <p>Серьезная угроза для технического функционирования объекта. Персонал выполняет инструкции инженерного персонала.</p>
+      <div class="detail-grid">
+        <div class="detail-col">
+          <h4>Регламент СБ</h4>
+          <ul>
+            <li>Разрешено <strong>нелетальное вооружение</strong></li>
+            <li>Обязательное ношение защитного снаряжения</li>
+            <li>Усиленный контроль критических зон</li>
+            <li>Организация дополнительных постов наблюдения</li>
+            <li>Профилактические проверки</li>
+            <li>Мониторинг коммуникаций</li>
+          </ul>
+        </div>
+        <div class="detail-col">
+          <h4>Регламент экипажа</h4>
+          <ul>
+            <li>Ограничение доступа в некоторые зоны</li>
+            <li>Обязательная идентификация при проходе</li>
+            <li>Поддержание повышенной бдительности</li>
+            <li>Информирование СБ о подозрительных действиях</li>
+            <li>Готовность к повышению уровня угрозы</li>
+            <li>Включение "Маячка Слежения"</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:8px;font-size:0.75rem;color:#8b949e;"><strong>Право на объявление:</strong> Капитан, ЦК, Старший инженер</p>
+    </div>
+  </div>
+</section>
 
-            <div class="quick-rules">
-                <h3>📌 Иерархия должностей</h3>
-                <div class="hierarchy">ЦК → НТР → Капитан → ГСБ → Смотритель → Офицер → Кадет</div>
-            </div>
-        </section>
+<!-- ===== ТАБЛИЦА УГРОЗ ===== -->
+<section id="threats" class="section">
+  <h2>⚠️ Уровни угроз антагонистов</h2>
+  
+  <div class="info-box">
+    <strong>Определение уровня:</strong> Если при <strong>подтверждении</strong> объявляется красный код — это <strong>Красный уровень угрозы</strong>, синий — <strong>Синий уровень</strong> и т.д.
+  </div>
+  
+  <div class="wrap">
+    <table>
+      <thead><tr><th>Антагонист</th><th>Подозрение</th><th>Подтверждение</th><th>Опасность</th><th>После устранения</th></tr></thead>
+      <tbody>
+        <tr class="row-r"><td>Пауки Террора</td><td class="b">Синий</td><td class="r">Красный</td><td>★★★★★</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-r"><td>Блоб</td><td class="b">Синий</td><td class="r">Красный</td><td>★★★★★</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-r"><td>Сбойный ИИ</td><td class="g">Зелёный</td><td class="r">Красный</td><td>★★★★★</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-r"><td>Ксеноморф</td><td class="b">Синий</td><td class="r">Красный</td><td>★★★★★</td><td class="v">Фиолетовый</td></tr>
+        <tr class="row-r"><td>Космический дракон</td><td class="b">Синий</td><td class="r">Красный</td><td>★★★★★</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-r"><td>Ядерные оперативники</td><td class="b">Синий</td><td class="r">Красный</td><td>★★★★★</td><td class="r">Красный</td></tr>
+        <tr class="row-r"><td>Одинокий оперативник</td><td class="b">Синий</td><td class="r">Красный</td><td>★★★★★</td><td class="r">Красный</td></tr>
+        <tr class="row-a"><td>Еретик (Возвышенный)</td><td class="a">Янтарный</td><td class="r">Красный</td><td>★★★★☆</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-a"><td>Культист Нар'Си</td><td class="g">Зелёный</td><td class="a">Янтарный</td><td>★★★★☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-a"><td>Агент Синдиката (Хиджак)</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★★★☆</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-a"><td>Маг</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★★★☆</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-a"><td>Пираты</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★★☆☆</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-a"><td>Революция</td><td class="g">Зелёный</td><td class="a">Янтарный</td><td>★★★☆☆</td><td class="a">Жёлтый</td></tr>
+        <tr class="row-b"><td>Абдуктор</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Еретик</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Кортикальный паразит</td><td class="b">Синий</td><td class="v">Фиолетовый</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Ниндзя клана Паука</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★★☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Агент Синдиката</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Истинный вампир</td><td class="g">Зелёный</td><td class="a">Янтарный</td><td>★★★☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Генокрад</td><td class="b">Синий</td><td class="a">Янтарный</td><td>★★★☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Морф</td><td class="b">Синий</td><td class="v">Фиолетовый</td><td>★★★☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Хедкрабы</td><td class="b">Синий</td><td class="v">Фиолетовый</td><td>★★★☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Кудзу</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-b"><td>Работорговцы</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-g"><td>Вор</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★☆☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-g"><td>Кошмар</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★★☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-g"><td>Агрессивные фауна</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★☆☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-g"><td>Парадоксальный клон</td><td class="g">Зелёный</td><td class="b">Синий</td><td>★☆☆☆☆</td><td class="g">Зелёный</td></tr>
+        <tr class="row-g"><td>Дьявол</td><td class="g">Зелёный</td><td class="g">Зелёный</td><td>☆☆☆☆☆</td><td class="g">Зелёный</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-        <!-- ВРАГИ КОРПОРАЦИИ -->
-        <section class="section">
-            <h2>☠️ Враги корпорации</h2>
-            
-            <div class="enemy-grid">
-                <div class="enemy-col convert">
-                    <h4>Конвертированные (Аресты)</h4>
-                    <p>Культист, Вампир, Жертва промывки, Революция</p>
-                </div>
-                <div class="enemy-col perma">
-                    <h4>Вечный пермабриг</h4>
-                    <p>Агент Синдиката, Работорговцы, Еретик</p>
-                </div>
-                <div class="enemy-col kill">
-                    <h4>Уничтожение на месте</h4>
-                    <p>Генокрад, Ниндзя, Маг, Ксеноморф, Блоб, Пираты, Хедкрабы</p>
-                </div>
-            </div>
-        </section>
+<!-- ===== СТАТЬИ КЗ ===== -->
+<section id="articles" class="section">
+  <h2>⚖️ Космический Закон</h2>
+  
+  <div class="info-box">
+    <strong>Иерархия:</strong> Представитель НТР → Капитан → ГСБ → Смотритель
+    <br><small style="color:#8b949e;">Неисполнение решения вышестоящего — статья 203</small>
+  </div>
+  
+  <div class="legend">
+    <span style="background:rgba(63,185,80,0.2);color:#3fb950;">1XX: до 5 мин / штраф 500₽</span>
+    <span style="background:rgba(88,166,255,0.2);color:#58a6ff;">2XX: 5-10 мин / штраф 1К₽</span>
+    <span style="background:rgba(163,113,247,0.2);color:#a371f7;">3XX: 15-30 мин / каторга</span>
+    <span style="background:rgba(210,153,34,0.2);color:#d29922;">4XX: 30-60 мин / пермабриг</span>
+    <span style="background:rgba(248,81,73,0.2);color:#f85149;">5XX: Пермабриг / импланты / казнь</span>
+  </div>
 
-        <!-- КАЛЬКУЛЯТОР -->
-        <section class="section">
-            <h2>🧮 Калькулятор приговора</h2>
-            
-            <div class="calc-form">
-                <div class="calc-row">
-                    <label>Статья:</label>
-                    <select id="calcArticle">
-                        <option value="100">1XX (до 5 мин)</option>
-                        <option value="200">2XX (5-10 мин)</option>
-                        <option value="300">3XX (15-30 мин)</option>
-                        <option value="400">4XX (30-60 мин)</option>
-                        <option value="500">5XX (особое)</option>
-                    </select>
-                </div>
-                
-                <div class="calc-mods">
-                    <label>Модификаторы:</label>
-                    <div class="mod-checkboxes">
-                        <label><input type="checkbox" id="m1"> П-1 Сотрудничество</label>
-                        <label><input type="checkbox" id="m2"> О-1 Рецидив</label>
-                        <label><input type="checkbox" id="m3"> О-3 Против должностных</label>
-                        <label><input type="checkbox" id="m4"> О-5 Сопротивление</label>
-                        <label><input type="checkbox" id="m5"> О-6 Критический рецидив</label>
-                    </div>
-                </div>
-                
-                <button onclick="calculate()">Рассчитать</button>
-                
-                <div id="calcResult" class="calc-result"></div>
-            </div>
-        </section>
-    </main>
+  <div class="wrap" style="margin-top:12px;">
+    <table class="art-table">
+      <thead><tr><th>Код</th><th>1XX</th><th>2XX</th><th>3XX</th><th>4XX</th><th>5XX</th></tr></thead>
+      <tbody>
+        <tr><td class="l">X00</td><td class="c1">Ущерб станции</td><td class="c2">Мелкий саботаж</td><td class="c3">Саботаж</td><td class="c4">Гранд. саботаж</td><td class="c5">Вопиющий саботаж</td></tr>
+        <tr><td class="l">X01</td><td class="c1">Неподобание</td><td class="c2">Антисоциальное</td><td class="c3">Суицид</td><td class="c4">Похищение</td><td class="c5">Заложники</td></tr>
+        <tr><td class="l">X02</td><td class="c1">Рукоприкладство</td><td class="c2">Драка</td><td class="c3">Увечья</td><td class="c4">Тяжкие увечья</td><td class="c5">Убийство</td></tr>
+        <tr><td class="l">X03</td><td class="c1">—</td><td class="c2">Неприказ</td><td class="c3">Сопр. власти</td><td class="c4">Мятеж</td><td class="c5">Контракт</td></tr>
+        <tr><td class="l">X04</td><td class="c1">—</td><td class="c2">Контрабанда</td><td class="c3">Запрещ. контраб.</td><td class="c4">Враждебная</td><td class="c5">—</td></tr>
+        <tr><td class="l">X05</td><td class="c1">Преследование</td><td class="c2">Домогательства</td><td class="c3">Понуждение</td><td class="c4">Изнасилование</td><td class="c5">—</td></tr>
+        <tr><td class="l">X06</td><td class="c1">—</td><td class="c2">Кража отдела</td><td class="c3">Кража станции</td><td class="c4">Крупная кража</td><td class="c5">Крит. объекты</td></tr>
+        <tr><td class="l">X07</td><td class="c1">Пребывание</td><td class="c2">Пребывание в ЗОД</td><td class="c3">Вторжение</td><td class="c4">Вторжение в ЗОД</td><td class="c5">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <script src="script.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body>
+<!-- ===== МОДИФИКАТОРЫ ===== -->
+<section id="modifiers" class="section">
+  <h2>📋 Модификаторы</h2>
+  
+  <div class="mods">
+    <div class="mod-group pos">
+      <h3>✅ Оправдательные</h3>
+      <div class="mod-item">
+        <span class="mod-code">П-1</span> Сотрудничество / Сдача с повинной
+        <div class="mod-effect">−50%</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">П-2</span> Отсутствие умысла
+        <div class="mod-effect">−1 уровень</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">П-3</span> Критическая необходимость
+        <div class="mod-effect">Снятие</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">П-4</span> Вражеская конвертация
+        <div class="mod-effect">Снятие</div>
+      </div>
+    </div>
+    <div class="mod-group neg">
+      <h3>❌ Отягощающие</h3>
+      <div class="mod-item">
+        <span class="mod-code">О-1</span> Рецидив
+        <div class="mod-effect">+10 мин</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">О-2</span> Должностное преступление
+        <div class="mod-effect">+15 мин</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">О-3</span> Против должностных лиц
+        <div class="mod-effect">+50%</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">О-4</span> Помеха расследованию
+        <div class="mod-effect">+50%</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">О-5</span> Сопротивление аресту
+        <div class="mod-effect">+50%</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">О-6</span> Критический рецидив
+        <div class="mod-effect">+100%</div>
+      </div>
+      <div class="mod-item">
+        <span class="mod-code">О-7</span> Пособничество
+        <div class="mod-effect">+90%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ДОЛЖНОСТИ ===== -->
+<section id="roles" class="section">
+  <h2>👔 Должности СБ</h2>
+  
+  <div class="roles">
+    <div class="role-card">
+      <div class="role-title">🎖️ Глава СБ</div>
+      <p>• Следить за исполнением КЗ и НРП</p>
+      <p>• Оповещать об угрозах, устанавливать коды</p>
+      <p>• Командовать отделом</p>
+      <p>• <strong>Пинпоинт НЯД</strong></p>
+      <p>• <strong>Имплант защиты разума</strong></p>
+      <p>• Выдаёт разрешения на оружие</p>
+    </div>
+    <div class="role-card">
+      <div class="role-title">🔒 Смотритель</div>
+      <p>• Учёт вооружения в арсенале</p>
+      <p>• Поддержание чистоты брига</p>
+      <p>• Надзор за заключёнными</p>
+      <p>• Обеспечение офицеров боеприпасами</p>
+      <p>• Командует при отсутствии ГСБ</p>
+    </div>
+    <div class="role-card">
+      <div class="role-title">🛡️ Офицер</div>
+      <p>• Выполнение приказов ГСБ/Смотрителя</p>
+      <p>• <strong>Идеальное знание КЗ</strong></p>
+      <p>• Аресты до 3XX статей включительно</p>
+      <p>• До <strong>4 единиц оружия</strong></p>
+    </div>
+    <div class="role-card">
+      <div class="role-title">🪖 Кадет</div>
+      <p>• <strong>Только с напарником!</strong></p>
+      <p>• Знание КЗ и НРП</p>
+      <p>• Стандартная экипировка</p>
+      <p>• <strong>Нет</strong> летального оружия</p>
+      <p>• <strong>Нет</strong> экзо-костюмов</p>
+    </div>
+  </div>
+  
+  <div class="hier"><h3>📌 Иерархия должностей</h3><div>Офицер ЦК → НТР → Капитан → ГСБ → Смотритель → Детектив → Офицер → Кадет</div></div>
+</section>
+
+<!-- ===== ВРАГИ ===== -->
+<section id="enemies" class="section">
+  <h2>☠️ Враги корпорации</h2>
+  
+  <div class="enemies">
+    <div class="enemy">
+      <h4>Конвертированные (Аресты)</h4>
+      <p>Культист, Раб Вампира, Жертва промывки мозгов, Жертва импланта рабства, Член революции, Члены "Семьи"</p>
+    </div>
+    <div class="enemy">
+      <h4>Вечный пермабриг</h4>
+      <p>Агент Синдиката, Враждебные Воксы, Работорговцы, Еретик</p>
+    </div>
+    <div class="enemy">
+      <h4>Уничтожение на месте</h4>
+      <p>Генокрад, Космический ниндзя, Маг, Агент Синдиката, Космические Пираты, Ксеноморф, Блоб, Морф, Паук террора, Хедкрабы, Одинокий оперативник, Дьявол</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== КАЛЬКУЛЯТОР ===== -->
+<section id="calc" class="section">
+  <h2>🧮 Калькулятор приговора</h2>
+  
+  <div class="calc">
+    <label>Уровень статьи:</label>
+    <select id="article">
+      <option value="100">1XX (до 5 мин)</option>
+      <option value="200">2XX (5-10 мин)</option>
+      <option value="300">3XX (15-30 мин)</option>
+      <option value="400">4XX (30-60 мин)</option>
+      <option value="500">5XX (особое)</option>
+    </select>
+    
+    <label>Модификаторы:</label>
+    <div class="calc-check">
+      <label><input type="checkbox" id="m1"> П-1</label>
+      <label><input type="checkbox" id="m2"> О-1</label>
+      <label><input type="checkbox" id="m3"> О-2</label>
+      <label><input type="checkbox" id="m4"> О-3</label>
+      <label><input type="checkbox" id="m5"> О-5</label>
+      <label><input type="checkbox" id="m6"> О-6</label>
+    </div>
+    
+    <button onclick="calc()">Рассчитать</button>
+    <div id="result" class="result"></div>
+  </div>
+</section>
+
+<div class="footer">
+  Space Station 14 • Nanotrasen © 2501
+</div>
+
+</div>
+
+<script>
+// Toggle colors
+function toggleColors() {
+  var body = document.body;
+  var toggle = document.getElementById('colorToggle');
+  if (toggle.checked) {
+    body.classList.remove('off');
+    localStorage.setItem('colors', 'on');
+  } else {
+    body.classList.add('off');
+    localStorage.setItem('colors', 'off');
+  }
+}
+
+// Load saved state
+if (localStorage.getItem('colors') === 'off') {
+  document.body.classList.add('off');
+  document.getElementById('colorToggle').checked = false;
+}
+
+// Calculator
+function calc() {
+  var art = parseInt(document.getElementById('article').value);
+  var time = art >= 500 ? 0 : art >= 400 ? 45 : art >= 300 ? 22 : art >= 200 ? 7 : 5;
+  var mods = [];
+  
+  if (document.getElementById('m1').checked) { mods.push('П-1 -50%'); time *= 0.5; }
+  if (document.getElementById('m2').checked) { mods.push('О-1 +10'); time += 10; }
+  if (document.getElementById('m3').checked) { mods.push('О-2 +15'); time += 15; }
+  if (document.getElementById('m4').checked) { mods.push('О-3 +50%'); time *= 1.5; }
+  if (document.getElementById('m5').checked) { mods.push('О-5 +50%'); time *= 1.5; }
+  if (document.getElementById('m6').checked) { mods.push('О-6 +100%'); time *= 2; }
+  
+  time = Math.max(0, Math.round(time));
+  var result = document.getElementById('result');
+  
+  if (art >= 500) {
+    result.innerHTML = '<div style="color:#d29922;">' + (time > 0 ? time + ' мин или Пермабриг' : 'Пермабриг / Казнь') + '</div>';
+  } else if (time > 60) {
+    result.innerHTML = '<div style="color:#f85149;">Пермабриг (60+ мин)</div>';
+  } else {
+    result.innerHTML = '<div style="color:#3fb950;font-size:1.1rem;">' + time + ' мин</div>';
+  }
+  
+  if (mods.length) result.innerHTML += '<div style="margin-top:6px;font-size:0.75rem;color:#8b949e;">' + mods.join(', ') + '</div>';
+  result.classList.add('show');
+}
+
+// Smooth scroll
+document.querySelectorAll('.nav a').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var id = this.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0bf5b4f5a33e499',t:'MTc4MTUwMzI0OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
