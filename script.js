@@ -1,105 +1,32 @@
-// ===== SS14 Wiki JavaScript =====
+// SS14 Wiki - JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    initBackgroundEffects();
-    initHeaderScroll();
+    console.log('SS14 Wiki loaded');
+    
+    // Initialize search
     initSearch();
-    initCardHover();
-    initScrollToTop();
+    
+    // Initialize calculator
     initCalculator();
-    initSmoothAnchors();
-    initCopyToClipboard();
+    
+    // Initialize scroll to top
+    initScrollTop();
+    
+    // Initialize card clicks
+    initCardClicks();
 });
 
-// ===== BACKGROUND EFFECTS =====
-function initBackgroundEffects() {
-    const bg = document.querySelector('.advanced-bg') || createBackground();
-    
-    function createBackground() {
-        const container = document.createElement('div');
-        container.className = 'advanced-bg';
-        
-        // Grid
-        const grid = document.createElement('div');
-        grid.className = 'bg-grid';
-        container.appendChild(grid);
-        
-        // Glowing orbs
-        const glow1 = document.createElement('div');
-        glow1.className = 'bg-glow-1';
-        container.appendChild(glow1);
-        
-        const glow2 = document.createElement('div');
-        glow2.className = 'bg-glow-2';
-        container.appendChild(glow2);
-        
-        const glow3 = document.createElement('div');
-        glow3.className = 'bg-glow-3';
-        container.appendChild(glow3);
-        
-        // Particles
-        const particles = document.createElement('div');
-        particles.className = 'bg-particles';
-        for (let i = 0; i < 10; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = `${Math.random() * 100}%`;
-            particles.appendChild(particle);
-        }
-        container.appendChild(particles);
-        
-        document.body.insertBefore(container, document.body.firstChild);
-        return container;
-    }
-}
-
-// ===== HEADER SCROLL EFFECT =====
-function initHeaderScroll() {
-    const header = document.querySelector('.site-header');
-    if (!header) return;
-    
-    let lastScroll = 0;
-    
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    });
-}
-
-// ===== SEARCH FUNCTIONALITY =====
+// ===== SEARCH =====
 function initSearch() {
     const searchInput = document.querySelector('.search-input');
     if (!searchInput) return;
     
-    // Create search results dropdown
+    // Create dropdown
     const dropdown = document.createElement('div');
     dropdown.className = 'search-dropdown';
-    dropdown.style.cssText = `
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        margin-top: 0.5rem;
-        max-height: 400px;
-        overflow-y: auto;
-        display: none;
-        z-index: 100;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    `;
-    
-    const searchContainer = searchInput.parentElement;
-    searchContainer.style.position = 'relative';
-    searchContainer.appendChild(dropdown);
+    dropdown.style.cssText = 'position:absolute;top:100%;left:0;right:0;background:#161d2b;border:1px solid #2a3444;border-radius:12px;margin-top:8px;max-height:300px;overflow-y:auto;display:none;z-index:100;';
+    searchInput.parentElement.style.position = 'relative';
+    searchInput.parentElement.appendChild(dropdown);
     
     // Search data
     const searchData = [
@@ -122,13 +49,12 @@ function initSearch() {
         { title: '4XX статьи', url: 'law.html#xx3', desc: 'Мятеж и саботаж' },
         { title: '5XX статьи', url: 'law.html#xx4', desc: 'Критические преступления' },
         { title: 'Контрабанда', url: 'law.html#xx4', desc: 'XX4 статьи' },
-        { title: 'Убийство', url: 'law.html#xx2', desc: 'Статья 502' },
         { title: 'Враги корпорации', url: 'law.html#enemies', desc: 'Классификация угроз' },
-        { title: 'Модификаторы', url: 'law.html#modifiers', desc: 'Оправдательные и отягощающие' },
-        { title: 'Пермабриг', url: 'security.html#warden', desc: 'Пожизненное заключение' },
+        { title: 'Калькулятор приговора', url: 'law.html#calculator', desc: 'Расчёт срока заключения' },
     ];
     
-    searchInput.addEventListener('input', (e) => {
+    // Search input handler
+    searchInput.addEventListener('input', function(e) {
         const query = e.target.value.toLowerCase().trim();
         
         if (query.length < 2) {
@@ -136,259 +62,158 @@ function initSearch() {
             return;
         }
         
-        const results = searchData.filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.desc.toLowerCase().includes(query)
-        );
+        const results = searchData.filter(function(item) {
+            return item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+        });
         
         if (results.length === 0) {
-            dropdown.innerHTML = '<div style="padding: 1.5rem; text-align: center; color: var(--text-muted);">Ничего не найдено</div>';
+            dropdown.innerHTML = '<div style="padding:1rem;text-align:center;color:#8892a0;">Ничего не найдено</div>';
         } else {
-            dropdown.innerHTML = results.map(item => `
-                <a href="${item.url}" class="search-result" style="
-                    display: block;
-                    padding: 1rem 1.25rem;
-                    text-decoration: none;
-                    color: var(--text-primary);
-                    border-bottom: 1px solid var(--border-color);
-                    transition: all 0.2s ease;
-                ">
-                    <div style="font-weight: 600; margin-bottom: 0.25rem;">${item.title}</div>
-                    <div style="font-size: 0.85rem; color: var(--text-muted);">${item.desc}</div>
-                </a>
-            `).join('');
-            
-            // Add hover effect to results
-            dropdown.querySelectorAll('.search-result').forEach(result => {
-                result.addEventListener('mouseenter', () => {
-                    result.style.background = 'var(--bg-card-hover)';
-                });
-                result.addEventListener('mouseleave', () => {
-                    result.style.background = 'transparent';
-                });
-            });
+            dropdown.innerHTML = results.map(function(item) {
+                return '<a href="' + item.url + '" style="display:block;padding:0.8rem 1rem;text-decoration:none;color:#e8edf5;border-bottom:1px solid #2a3444;">' +
+                    '<div style="font-weight:600;margin-bottom:0.25rem;">' + item.title + '</div>' +
+                    '<div style="font-size:0.85rem;color:#8892a0;">' + item.desc + '</div></a>';
+            }).join('');
         }
         
         dropdown.style.display = 'block';
     });
     
-    // Close dropdown on click outside
-    document.addEventListener('click', (e) => {
-        if (!searchContainer.contains(e.target)) {
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!searchInput.parentElement.contains(e.target)) {
             dropdown.style.display = 'none';
         }
     });
     
-    // Close on escape
-    searchInput.addEventListener('keydown', (e) => {
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             dropdown.style.display = 'none';
             searchInput.blur();
         }
     });
-}
-
-// ===== CARD HOVER EFFECTS =====
-function initCardHover() {
-    const cards = document.querySelectorAll('.card');
     
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
-}
-
-// ===== SCROLL TO TOP =====
-function initScrollToTop() {
-    // Create button if not exists
-    let scrollBtn = document.querySelector('.scroll-top');
-    
-    if (!scrollBtn) {
-        scrollBtn = document.createElement('button');
-        scrollBtn.className = 'scroll-top';
-        scrollBtn.innerHTML = `
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 15l-6-6-6 6"/>
-            </svg>
-        `;
-        scrollBtn.style.cssText = `
-            position: fixed;
-            bottom: 2rem;
-            right: calc(2rem + 70px);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 998;
-        `;
-        document.body.appendChild(scrollBtn);
-    }
-    
-    // Show/hide button
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 500) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
+    // Ctrl+K to focus search
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            searchInput.focus();
         }
     });
-    
-    // Scroll to top on click
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
 }
 
-// ===== CALCULATOR FUNCTIONALITY =====
+// ===== CALCULATOR =====
 function initCalculator() {
-    const calcForm = document.querySelector('.calculator-form');
-    if (!calcForm) return;
+    const form = document.querySelector('.calculator-form');
+    if (!form) return;
     
-    const resultBox = document.querySelector('.result-box');
-    if (!resultBox) return;
-    
-    calcForm.addEventListener('submit', (e) => {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         calculateSentence();
     });
 }
 
 function calculateSentence() {
-    // Get base article level
-    const articleSelect = document.getElementById('article-level');
-    const baseLevel = articleSelect ? parseInt(articleSelect.value) || 100 : 100;
+    // Get base article
+    var articleSelect = document.getElementById('article-level');
+    var baseLevel = articleSelect ? parseInt(articleSelect.value) : 100;
     
-    // Get base time in minutes
-    let baseTime = 5; // Default for 1XX
-    if (baseLevel >= 500) baseTime = 0; // 5XX uses special punishment
+    // Calculate base time
+    var baseTime = 5;
+    if (baseLevel >= 500) baseTime = 0;
     else if (baseLevel >= 400) baseTime = 45;
     else if (baseLevel >= 300) baseTime = 22;
     else if (baseLevel >= 200) baseTime = 7;
-    else if (baseLevel >= 100) baseTime = 5;
     
     // Get modifiers
-    let totalModifier = 0;
-    let modifierList = [];
+    var modifiers = [];
     
-    // Positive modifiers (reductions)
-    if (document.getElementById('mod-p1')?.checked) {
-        totalModifier -= 0.5;
-        modifierList.push({ name: 'П-1: Сотрудничество', value: '-50%', type: 'positive' });
+    // Positive
+    if (document.getElementById('mod-p1') && document.getElementById('mod-p1').checked) {
+        modifiers.push({ name: 'П-1: Сотрудничество', value: '-50%', type: 'positive' });
     }
-    if (document.getElementById('mod-p2')?.checked) {
-        modifierList.push({ name: 'П-2: Отсутствие умысла', value: '-1 уровень', type: 'positive' });
-        baseTime = baseTime * 0.7; // Reduce severity
+    if (document.getElementById('mod-p2') && document.getElementById('mod-p2').checked) {
+        modifiers.push({ name: 'П-2: Отсутствие умысла', value: '-1 уровень', type: 'positive' });
     }
     
-    // Negative modifiers (additions)
-    if (document.getElementById('mod-o1')?.checked) {
-        totalModifier += 10;
-        modifierList.push({ name: 'О-1: Рецидив', value: '+10 мин', type: 'negative' });
+    // Negative
+    if (document.getElementById('mod-o1') && document.getElementById('mod-o1').checked) {
+        modifiers.push({ name: 'О-1: Рецидив', value: '+10 мин', type: 'negative' });
     }
-    if (document.getElementById('mod-o2')?.checked) {
-        totalModifier += 15;
-        modifierList.push({ name: 'О-2: Должностное преступление', value: '+15 мин', type: 'negative' });
+    if (document.getElementById('mod-o2') && document.getElementById('mod-o2').checked) {
+        modifiers.push({ name: 'О-2: Должностное', value: '+15 мин', type: 'negative' });
     }
-    if (document.getElementById('mod-o3')?.checked) {
-        totalModifier += 0.5;
-        modifierList.push({ name: 'О-3: Против должностных лиц', value: '+50%', type: 'negative' });
+    if (document.getElementById('mod-o3') && document.getElementById('mod-o3').checked) {
+        modifiers.push({ name: 'О-3: Против должностных', value: '+50%', type: 'negative' });
     }
-    if (document.getElementById('mod-o4')?.checked) {
-        totalModifier += 0.5;
-        modifierList.push({ name: 'О-4: Помеха расследованию', value: '+50%', type: 'negative' });
+    if (document.getElementById('mod-o4') && document.getElementById('mod-o4').checked) {
+        modifiers.push({ name: 'О-4: Помеха расследованию', value: '+50%', type: 'negative' });
     }
-    if (document.getElementById('mod-o5')?.checked) {
-        totalModifier += 0.5;
-        modifierList.push({ name: 'О-5: Сопротивление аресту', value: '+50%', type: 'negative' });
+    if (document.getElementById('mod-o5') && document.getElementById('mod-o5').checked) {
+        modifiers.push({ name: 'О-5: Сопротивление аресту', value: '+50%', type: 'negative' });
     }
-    if (document.getElementById('mod-o6')?.checked) {
-        totalModifier += 1;
-        modifierList.push({ name: 'О-6: Критический рецидив', value: '+100%', type: 'negative' });
+    if (document.getElementById('mod-o6') && document.getElementById('mod-o6').checked) {
+        modifiers.push({ name: 'О-6: Критический рецидив', value: '+100%', type: 'negative' });
     }
-    if (document.getElementById('mod-o7')?.checked) {
-        modifierList.push({ name: 'О-7: Пособничество', value: '+90% срока', type: 'negative' });
-        totalModifier += 0.9;
+    if (document.getElementById('mod-o7') && document.getElementById('mod-o7').checked) {
+        modifiers.push({ name: 'О-7: Пособничество', value: '+90%', type: 'negative' });
     }
     
     // Calculate final time
-    let finalTime = baseTime;
+    var finalTime = baseTime;
     
-    // Apply percentage modifiers
-    const percentageMods = modifierList.filter(m => m.value.includes('%'));
-    percentageMods.forEach(mod => {
-        const percent = parseInt(mod.value) / 100;
-        if (mod.type === 'negative') {
-            finalTime *= (1 + percent);
-        } else {
-            finalTime *= (1 - percent);
+    modifiers.forEach(function(mod) {
+        if (mod.value.indexOf('%') !== -1) {
+            var percent = parseInt(mod.value) / 100;
+            if (mod.type === 'negative') {
+                finalTime *= (1 + percent);
+            } else {
+                finalTime *= (1 - percent);
+            }
+        } else if (mod.value.indexOf('мин') !== -1) {
+            var mins = parseInt(mod.value);
+            finalTime += mod.type === 'negative' ? mins : -mins;
         }
     });
     
-    // Apply flat modifiers
-    const flatMods = modifierList.filter(m => m.value.includes('мин'));
-    flatMods.forEach(mod => {
-        const mins = parseInt(mod.value);
-        finalTime += mod.type === 'negative' ? mins : -mins;
-    });
-    
-    // Ensure minimum 0
     finalTime = Math.max(0, Math.round(finalTime));
     
-    // Update result display
-    const resultTime = resultBox.querySelector('.result-time');
-    const resultArticles = resultBox.querySelector('.result-articles');
-    const modifierListEl = resultBox.querySelector('.modifier-list-content');
+    // Update display
+    var resultBox = document.querySelector('.result-box');
+    if (!resultBox) return;
     
-    if (resultTime) {
-        let timeText = '';
-        if (baseLevel >= 500) {
-            timeText = finalTime > 0 ? `${finalTime} мин` : 'Пермабриг/Казнь';
-        } else if (finalTime > 60) {
-            timeText = 'Пермабриг (60+ мин)';
-        } else {
-            timeText = `${finalTime} мин`;
-        }
-        resultTime.textContent = timeText;
+    var timeText = '';
+    if (baseLevel >= 500) {
+        timeText = finalTime > 0 ? finalTime + ' мин' : 'Пермабриг/Казнь';
+    } else if (finalTime > 60) {
+        timeText = 'Пермабриг (60+ мин)';
+    } else {
+        timeText = finalTime + ' мин';
     }
     
-    if (resultArticles) {
-        let levelName = '';
-        if (baseLevel >= 500) levelName = '5XX (Критические преступления)';
-        else if (baseLevel >= 400) levelName = '4XX (Тяжкие преступления)';
-        else if (baseLevel >= 300) levelName = '3XX (Серьёзные преступления)';
-        else if (baseLevel >= 200) levelName = '2XX (Средние преступления)';
-        else levelName = '1XX (Мелкие нарушения)';
-        resultArticles.textContent = levelName;
+    var levelText = '';
+    if (baseLevel >= 500) levelText = '5XX — Критические';
+    else if (baseLevel >= 400) levelText = '4XX — Тяжкие';
+    else if (baseLevel >= 300) levelText = '3XX — Серьёзные';
+    else if (baseLevel >= 200) levelText = '2XX — Средние';
+    else levelText = '1XX — Мелкие';
+    
+    resultBox.querySelector('.result-time').textContent = timeText;
+    resultBox.querySelector('.result-articles').textContent = levelText;
+    
+    var modList = resultBox.querySelector('.modifier-list-content');
+    if (modifiers.length === 0) {
+        modList.innerHTML = '<div style="color:#8892a0;">Без модификаторов</div>';
+    } else {
+        modList.innerHTML = modifiers.map(function(m) {
+            return '<div class="modifier-item">' +
+                '<span>' + m.name + '</span>' +
+                '<span class="modifier-' + m.type + '">' + m.value + '</span></div>';
+        }).join('');
     }
     
-    if (modifierListEl) {
-        if (modifierList.length === 0) {
-            modifierListEl.innerHTML = '<div style="color: var(--text-muted);">Без модификаторов</div>';
-        } else {
-            modifierListEl.innerHTML = modifierList.map(m => `
-                <div class="modifier-item">
-                    <span>${m.name}</span>
-                    <span class="modifier-${m.type}">${m.value}</span>
-                </div>
-            `).join('');
-        }
-    }
-    
-    // Show result with animation
+    // Show result
     resultBox.classList.add('show');
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     
@@ -396,151 +221,69 @@ function calculateSentence() {
     showToast('Расчёт выполнен!');
 }
 
-function showToast(message) {
-    // Remove existing toast
-    const existingToast = document.querySelector('.toast');
-    if (existingToast) existingToast.remove();
+// ===== SCROLL TO TOP =====
+function initScrollTop() {
+    // Create button
+    var btn = document.createElement('button');
+    btn.className = 'scroll-top-btn';
+    btn.innerHTML = '↑';
+    btn.style.cssText = 'position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;' +
+        'background:#161d2b;border:1px solid #2a3444;color:#00ff88;font-size:24px;cursor:pointer;' +
+        'opacity:0;visibility:hidden;transition:all 0.3s;z-index:999;';
+    document.body.appendChild(btn);
     
-    // Create new toast
-    const toast = document.createElement('div');
+    // Show/hide on scroll
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            btn.style.opacity = '1';
+            btn.style.visibility = 'visible';
+        } else {
+            btn.style.opacity = '0';
+            btn.style.visibility = 'hidden';
+        }
+    });
+    
+    // Click to scroll
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// ===== CARD CLICKS =====
+function initCardClicks() {
+    // Ensure all cards with onclick work
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card) {
+        if (card.onclick) {
+            card.style.cursor = 'pointer';
+        }
+    });
+}
+
+// ===== TOAST =====
+function showToast(message) {
+    // Remove existing
+    var existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    
+    // Create new
+    var toast = document.createElement('div');
     toast.className = 'toast';
     toast.textContent = message;
+    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);' +
+        'padding:1rem 2rem;background:#161d2b;border:1px solid #00ff88;border-radius:12px;' +
+        'color:#e8edf5;z-index:1001;animation:fadeInUp 0.3s ease;';
     document.body.appendChild(toast);
     
-    // Show toast
-    setTimeout(() => toast.classList.add('show'), 10);
-    
-    // Hide after 3 seconds
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 400);
+    // Remove after 3s
+    setTimeout(function() {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s';
+        setTimeout(function() { toast.remove(); }, 300);
     }, 3000);
 }
 
-// ===== SMOOTH ANCHORS =====
-function initSmoothAnchors() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offsetTop = target.offsetTop - 100;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
-// ===== COPY TO CLIPBOARD =====
-function initCopyToClipboard() {
-    // Add copy buttons to code blocks
-    const articles = document.querySelectorAll('.article');
-    
-    articles.forEach(article => {
-        const code = article.querySelector('.article-code');
-        if (!code) return;
-        
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-btn';
-        copyBtn.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-        `;
-        copyBtn.style.cssText = `
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: all 0.2s ease;
-        `;
-        
-        copyBtn.addEventListener('mouseenter', () => {
-            copyBtn.style.color = 'var(--accent-green)';
-            copyBtn.style.borderColor = 'var(--accent-green)';
-        });
-        
-        copyBtn.addEventListener('mouseleave', () => {
-            copyBtn.style.color = 'var(--text-muted)';
-            copyBtn.style.borderColor = 'var(--border-color)';
-        });
-        
-        copyBtn.addEventListener('click', () => {
-            const codeText = code.textContent;
-            navigator.clipboard.writeText(codeText).then(() => {
-                showToast(`Скопировано: ${codeText}`);
-            });
-        });
-        
-        article.style.position = 'relative';
-        article.appendChild(copyBtn);
-    });
-}
-
-// ===== KEYBOARD SHORTCUTS =====
-document.addEventListener('keydown', (e) => {
-    // Ctrl/Cmd + K for search focus
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        const searchInput = document.querySelector('.search-input');
-        if (searchInput) {
-            searchInput.focus();
-        }
-    }
-    
-    // Escape to close dropdowns
-    if (e.key === 'Escape') {
-        const dropdown = document.querySelector('.search-dropdown');
-        if (dropdown) {
-            dropdown.style.display = 'none';
-        }
-    }
-});
-
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe elements for scroll animations
-document.querySelectorAll('.code-section, .content-block, .role-section, .article').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// ===== TABLE ROW HOVER SOUND (OPTIONAL) =====
-// Uncomment if you want audio feedback
-/*
-document.querySelectorAll('tbody tr').forEach(row => {
-    row.addEventListener('mouseenter', () => {
-        // Optional: play subtle sound
-    });
-});
-*/
-
-// ===== EXPORT FUNCTIONS FOR EXTERNAL USE =====
-window.SS14Wiki = {
-    showToast,
-    calculateSentence,
-    scrollToTop: () => window.scrollTo({ top: 0, behavior: 'smooth' })
-};
+// Add animation keyframes
+var style = document.createElement('style');
+style.textContent = '@keyframes fadeInUp { from { opacity:0;transform:translate(-50%,20px); } to { opacity:1;transform:translate(-50%,0); } }';
+document.head.appendChild(style);
