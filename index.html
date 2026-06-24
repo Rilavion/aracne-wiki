@@ -46,20 +46,6 @@ h3 { font-size: 1rem; color: var(--muted); margin: 1rem 0 0.5rem; }
 .info-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .info-item { padding: 5px 12px; background: var(--bg); border-radius: 6px; font-size: 0.85rem; }
 
-/* CODE DETAILS */
-.code-detail { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; }
-.code-detail-header { padding: 12px 16px; font-weight: 600; font-size: 1rem; border-bottom: 1px solid var(--border); }
-.code-detail-body { padding: 12px 16px; }
-.code-detail-body p { font-size: 0.9rem; color: var(--text); margin-bottom: 6px; }
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
-.detail-col h4 { font-size: 0.9rem; color: var(--green); margin-bottom: 8px; }
-.detail-col ul { list-style: none; }
-.detail-col li { font-size: 0.85rem; color: var(--muted); padding: 5px 0; padding-left: 16px; position: relative; }
-.detail-col li::before { content: '▹'; position: absolute; left: 0; color: var(--green); }
-.special-rules { margin-top: 12px; padding: 10px; background: rgba(248, 81, 73, 0.1); border-radius: 6px; }
-.special-rules h4 { color: var(--red); margin-bottom: 8px; font-size: 0.9rem; }
-.special-rules li { color: var(--red); }
-
 /* CODE COLORS */
 .g { background: rgba(63, 185, 80, 0.2); color: var(--green); }
 .b { background: rgba(88, 166, 255, 0.2); color: var(--blue); }
@@ -134,7 +120,7 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
 .article-header { padding: 10px 14px; font-weight: 600; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
 .article-body { padding: 10px 14px; }
 .article-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-.art-card { background: var(--bg2); border-radius: 6px; padding: 8px; text-align: center; cursor: pointer; transition: transform 0.15s, background 0.15s; border: 1px solid transparent; }
+.art-card { background: var(--bg2); border-radius: 6px; padding: 8px; text-align: center; cursor: pointer; transition: transform 0.15s, background 0.15s, border-color 0.15s; border: 1px solid transparent; }
 .art-card:hover { transform: translateY(-2px); background: #1c2128; border-color: var(--border); }
 .art-card .art-num { font-weight: 700; margin-bottom: 4px; font-size: 0.85rem; }
 .art-card .art-name { font-size: 0.75rem; color: var(--muted); }
@@ -145,6 +131,8 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
 .art-l5 .art-num { color: var(--red); }
 .art-card.hidden { display: none; }
 .art-card mark { background: rgba(88,166,255,0.3); color: #fff; border-radius: 2px; padding: 0 2px; }
+.art-card.empty { opacity: 0.35; cursor: default; }
+.art-card.empty:hover { transform: none; background: var(--bg2); border-color: transparent; }
 
 /* SEARCH */
 .search-bar { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
@@ -168,25 +156,27 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
 .modal-body p { margin-bottom: 10px; }
 .modal-punishment { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
 
-/* THREAT CALCULATOR */
-.calc-section { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 14px; margin-bottom: 16px; }
-.calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.calc-title { font-weight: 600; color: var(--yellow); }
-.calc-result { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-.calc-code { padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; }
-.calc-reason { color: var(--muted); font-size: 0.9rem; max-width: 500px; }
-.calc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; max-height: 360px; overflow-y: auto; padding-right: 4px; }
-.calc-item { display: flex; align-items: center; gap: 8px; background: var(--bg2); border-radius: 6px; padding: 8px 10px; font-size: 0.85rem; cursor: pointer; border: 1px solid transparent; transition: border-color 0.15s; }
-.calc-item:hover { border-color: var(--border); }
-.calc-item input { accent-color: var(--blue); }
-.calc-item label { flex: 1; cursor: pointer; }
-.calc-select { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.calc-select select { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 2px 6px; font-size: 0.8rem; }
-.calc-actions { display: flex; gap: 8px; margin-top: 12px; }
-.btn { background: var(--bg2); border: 1px solid var(--border); color: var(--text); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
-.btn:hover { background: var(--bg); border-color: var(--blue); }
-.btn-primary { background: rgba(88,166,255,0.15); border-color: var(--blue); color: var(--blue); }
-.btn-primary:hover { background: rgba(88,166,255,0.25); }
+/* CODE CARDS (compact like articles) */
+.code-sections { display: flex; flex-direction: column; gap: 12px; }
+.code-section { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.code-section-header { padding: 10px 14px; font-weight: 600; font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; }
+.code-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 10px 14px; }
+.code-card { background: var(--bg2); border-radius: 6px; padding: 10px; text-align: center; cursor: pointer; transition: transform 0.15s, background 0.15s, border-color 0.15s; border: 1px solid transparent; }
+.code-card:hover { transform: translateY(-2px); background: #1c2128; border-color: var(--border); }
+.code-card .code-icon { font-size: 1.3rem; margin-bottom: 4px; }
+.code-card .code-name { font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
+.code-card .code-desc { font-size: 0.7rem; color: var(--muted); line-height: 1.4; }
+
+/* THREAT TABLE CALCULATOR */
+.threat-calc { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; }
+.threat-calc-title { font-weight: 600; color: var(--yellow); }
+.threat-calc-code { padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 1rem; }
+.threat-calc-reason { color: var(--muted); font-size: 0.85rem; flex: 1; }
+.threat-calc-actions { display: flex; gap: 8px; }
+.threat-select { display: flex; align-items: center; gap: 6px; }
+.threat-select select { background: var(--bg2); border: 1px solid var(--border); color: var(--text); border-radius: 4px; padding: 3px 6px; font-size: 0.8rem; }
+.threat-select input[type="checkbox"] { accent-color: var(--blue); width: 16px; height: 16px; cursor: pointer; }
+.threat-select label { cursor: pointer; font-size: 0.8rem; }
 
 /* PRINCIPLES & AUTHORITY */
 .principles { display: flex; gap: 12px; margin-bottom: 12px; }
@@ -211,10 +201,11 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
   .content { margin-left: 0; padding: 1rem; }
   .mods { grid-template-columns: 1fr; }
   .enemies { grid-template-columns: 1fr; }
-  .detail-grid { grid-template-columns: 1fr; }
   .principles { flex-direction: column; }
   .article-grid { grid-template-columns: repeat(2, 1fr); }
-  .calc-grid { grid-template-columns: 1fr; }
+  .code-grid { grid-template-columns: repeat(2, 1fr); }
+  .threat-calc { flex-direction: column; align-items: flex-start; }
+  .threat-calc-actions { width: 100%; }
 }
 
 /* SCROLLBAR */
@@ -226,7 +217,6 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
 /* Utility */
 .text-muted { color: var(--muted); }
 .text-center { text-align: center; }
-.mb-0 { margin-bottom: 0; }
 .highlight { background: rgba(88,166,255,0.25); color: #fff; border-radius: 2px; padding: 0 2px; }
 </style>
 </head>
@@ -243,7 +233,6 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
   <nav class="nav">
     <a href="#codes">📢 Коды тревоги</a>
     <a href="#threats">⚠️ Угрозы</a>
-    <a href="#calculator">🧮 Калькулятор угроз</a>
     <a href="#articles">⚖️ Статьи КЗ</a>
     <a href="#modifiers">📋 Модификаторы</a>
     <a href="#roles">👔 Должности СБ</a>
@@ -273,8 +262,7 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
     <div class="auth-item">📋 НТР</div>
   </div>
 
-  <!-- Codes will be generated by JS -->
-  <div id="codesContainer"></div>
+  <div class="code-sections" id="codesContainer"></div>
 </section>
 
 <!-- ===== ТАБЛИЦА УГРОЗ ===== -->
@@ -285,6 +273,17 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
     <strong>Определение уровня:</strong> Если при <strong>подтверждении</strong> объявляется красный код — это <strong>Красный уровень угрозы</strong>, синий — <strong>Синий уровень</strong> и т.д.
   </div>
 
+  <div class="threat-calc">
+    <div class="threat-calc-title">🧮 Рекомендуемый код:</div>
+    <div class="threat-calc-code g" id="calcCode">🟢 ЗЕЛЁНЫЙ</div>
+    <div class="threat-calc-reason" id="calcReason">Нет активных угроз</div>
+    <div class="threat-calc-actions">
+      <button class="btn" onclick="resetCalculator()">Сбросить</button>
+      <button class="btn btn-primary" onclick="setAllConfirmed()">Все подтверждены</button>
+      <button class="btn" onclick="setAllSuspicion()">Все подозрения</button>
+    </div>
+  </div>
+
   <div class="search-bar">
     <input type="text" id="threatSearch" placeholder="Поиск по антагонисту, коду или уровню опасности..." oninput="filterThreats()">
     <div class="search-count" id="threatCount">Всего: 0</div>
@@ -293,6 +292,7 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
   <div class="wrap">
     <table id="threatTable">
       <thead><tr>
+        <th>Статус</th>
         <th onclick="sortThreats('name')">Антагонист <span class="sort-icon">↕</span></th>
         <th onclick="sortThreats('suspicion')">Подозрение <span class="sort-icon">↕</span></th>
         <th onclick="sortThreats('confirmation')">Подтверждение <span class="sort-icon">↕</span></th>
@@ -301,33 +301,6 @@ th.active-sort .sort-icon { opacity: 1; color: var(--blue); }
       </tr></thead>
       <tbody id="threatBody"></tbody>
     </table>
-  </div>
-</section>
-
-<!-- ===== КАЛЬКУЛЯТОР УГРОЗ ===== -->
-<section id="calculator" class="section">
-  <h2>🧮 Калькулятор уровня угрозы</h2>
-
-  <div class="info-box">
-    <strong>Как пользоваться:</strong> отметьте активных антагонистов и их статус (подозрение / подтверждение). Калькулятор покажет, какой код необходимо вводить согласно НРП.
-  </div>
-
-  <div class="calc-section">
-    <div class="calc-header">
-      <div class="calc-title">Выберите угрозы на станции</div>
-      <div class="calc-result">
-        <div class="calc-code g" id="calcCode">🟢 ЗЕЛЁНЫЙ</div>
-        <div class="calc-reason" id="calcReason">Нет активных угроз</div>
-      </div>
-    </div>
-
-    <div class="calc-grid" id="calcGrid"></div>
-
-    <div class="calc-actions">
-      <button class="btn" onclick="resetCalculator()">Сбросить</button>
-      <button class="btn btn-primary" onclick="setAllConfirmed()">Все подтверждены</button>
-      <button class="btn" onclick="setAllSuspicion()">Все подозрения</button>
-    </div>
   </div>
 </section>
 
@@ -421,32 +394,31 @@ const codeLevels = {
 };
 
 const codePriority = { green: 1, blue: 2, yellow: 3, violet: 3, amber: 4, red: 5, gamma: 6 };
-const codeOrder = ['green', 'blue', 'yellow', 'violet', 'amber', 'red', 'gamma'];
 
 const codesData = [
   {
-    key: 'green', title: 'ЗЕЛЁНЫЙ КОД — Базовый уровень',
+    key: 'green', title: 'ЗЕЛЁНЫЙ КОД', short: 'Базовый уровень',
     desc: 'Все особые положения аннулированы. У командования нет сведений о наличии угрозы. Все стандартные процедуры соблюдаются в полном объёме.',
     sb: ['Основное вооружение скрыто', 'Разрешена выдача станнеров', 'Огнестрельное только с нелетальными', 'Задержание при непосредственном наблюдении', 'Требуется санкция для задержаний', 'Запрещены обыски без письменного разрешения'],
     crew: ['Свободное перемещение по допуску', 'Рекомендовано: режим "Координаты"', 'Запрещено: разглашение конфиденциальной информации', 'ЗОДы закрыты при обоснованной причине', 'Хранилище открывается при необходимости'],
     auth: ['Капитан', 'ЦК']
   },
   {
-    key: 'blue', title: 'СИНИЙ КОД — Уровень средней угрозы',
+    key: 'blue', title: 'СИНИЙ КОД', short: 'Уровень средней угрозы',
     desc: 'Командование получило данные о враждебной активности. Положение упрощает процедуры и оперативно-следственные мероприятия.',
     sb: ['Разрешено нелетальное вооружение', 'Летальное — с санкции ГСБ', 'Открытое ношение оружия допускается', 'Санкция не требуется при основаниях', 'Усиленный контроль доступа', 'Проверка всех входящих/выходящих', 'Усиленный режим охраны критических систем'],
     crew: ['Ограничение свободного перемещения', 'Соблюдение уровней допуска', 'Обязательная идентификация на КПП', 'Следовать указаниям СБ', 'Включить режим "Координаты"', 'Избегать скоплений экипажа', 'ЗОДы закрываются на контроль'],
     auth: ['Капитан', 'ЦК', 'ГСБ']
   },
   {
-    key: 'amber', title: 'ЯНТАРНЫЙ КОД — Повышенный уровень',
+    key: 'amber', title: 'ЯНТАРНЫЙ КОД', short: 'Повышенный уровень',
     desc: 'Значительные враждебные угрозы. Сотрудники СБ следуют процедурам усиления. Авторизованный персонал обязан выполнять инструкции СБ.',
     sb: ['Разрешено летальное вооружение из арсенала', 'Ограничения на ношение оружия сняты', 'Обязательное ношение защитного снаряжения', 'Право на проведение специальных операций', 'Усиленный контроль всех зон', 'Обыски без санкции', 'Полная проверка всех помещений'],
     crew: ['Строгий контроль перемещений', 'Обязательная идентификация на КПП', 'Запрет нахождения в запретных зонах', 'Следовать указаниям СБ', 'Включить режим "Координаты"', 'Избегать скопления экипажа', 'Готовность к эвакуации'],
     auth: ['Капитан', 'ЦК', 'ГСБ']
   },
   {
-    key: 'red', title: 'КРАСНЫЙ КОД — Максимальная угроза',
+    key: 'red', title: 'КРАСНЫЙ КОД', short: 'Максимальная угроза',
     desc: 'Начало военной операции. Применение летальной силы. Любой сотрудник обязан подчиняться приказам СБ.',
     condition: 'Присутствие 3+ угроз Янтарного уровня или угроза, граничащая с полным уничтожением.',
     sb: ['Любое вооружение из арсенала', 'Обязательное ношение полного комплекта защиты', 'Сила без предупреждения', 'Специальные операции в приоритетном порядке', 'Проникновение в любые зоны', 'Любые средства подавления', 'Полный локдаун всех зон', 'Блокировка всех выходов и входов'],
@@ -455,7 +427,7 @@ const codesData = [
     special: ['Приоритет всех ресурсов на устранение угрозы', 'Все решения принимаются только командованием', 'Отказ от приказов карается по максимально строгому регламенту']
   },
   {
-    key: 'gamma', title: 'ГАММА КОД — Особый режим максимальной мобилизации',
+    key: 'gamma', title: 'ГАММА КОД', short: 'Особый режим максимальной мобилизации',
     desc: 'Станция под серьёзной угрозой. ЦК проводит значительное усиление СБ. Неограниченные превентивные меры.',
     condition: 'Только по решению ЦК при крупных угрозах и невозможности эвакуации.',
     sb: ['Любое вооружение на станции', 'Полный комплект защиты', 'Любые спецсредства', 'Мобилизация всех сил СБ', 'Полная изоляция критических зон', 'Проникновение в любые помещения', 'Приоритетное использование ресурсов'],
@@ -464,14 +436,14 @@ const codesData = [
     special: ['Содержание под стражей допускается без процессуальных формальностей']
   },
   {
-    key: 'violet', title: 'ФИОЛЕТОВЫЙ КОД — Биологическая/химическая угроза',
+    key: 'violet', title: 'ФИОЛЕТОВЫЙ КОД', short: 'Биологическая/химическая угроза',
     desc: 'Угроза локализованной эпидемической вспышки. Объявлен карантин. Персонал выполняет инструкции медотдела.',
     sb: ['Обязательные средства химзащиты', 'Выдача средств защиты и костюмов', 'Разрешено летальное вооружение', 'Организация карантинных зон', 'Изоляция заражённых участков', 'Контроль распространения заражения'],
     crew: ['Немедленное надевание средств защиты', 'Соблюдение карантинного режима', 'Выполнение указаний СБ', 'Запрещено: снятие средств защиты', 'Запрещено: контакт с заражёнными зонами', 'Полная изоляция заражённых зон'],
     auth: ['Капитан', 'ЦК', 'Главный врач']
   },
   {
-    key: 'yellow', title: 'ЖЁЛТЫЙ КОД — Повреждения станции',
+    key: 'yellow', title: 'ЖЁЛТЫЙ КОД', short: 'Повреждения станции',
     desc: 'Серьёзная угроза для технического функционирования объекта. Персонал выполняет инструкции инженерного персонала.',
     sb: ['Разрешено нелетальное вооружение', 'Обязательное ношение защитного снаряжения', 'Усиленный контроль критических зон', 'Организация дополнительных постов наблюдения', 'Профилактические проверки', 'Мониторинг коммуникаций'],
     crew: ['Ограничение доступа в некоторые зоны', 'Обязательная идентификация при проходе', 'Поддержание повышенной бдительности', 'Информирование СБ о подозрительных действиях', 'Готовность к повышению уровня угрозы', 'Включение "Маячка Слежения"'],
@@ -513,7 +485,7 @@ const threatsData = [
 
 const lawCategories = [
   {
-    title: '100 — 500: Ущерб станции', range: '1XX → 5XX', color: '#3fb950',
+    title: '100 — 500: Ущерб станции', range: '1XX → 5XX', color: '#3fb950', shift: 0,
     articles: [
       { num: 100, name: 'Мелкий ущерб', level: 1, punishment: 'до 5 мин',
         desc: 'Нанесение ущерба имуществу другого лица, либо повреждение имущества корпорации в степени, когда его целостность еще может быть восстановлена ремонтом.',
@@ -533,7 +505,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '101 — 501: Неподобающее поведение', range: '1XX → 5XX', color: '#58a6ff',
+    title: '101 — 501: Неподобающее поведение', range: '1XX → 5XX', color: '#58a6ff', shift: 0,
     articles: [
       { num: 101, name: 'Неподобающее поведение', level: 1, punishment: 'до 5 мин',
         desc: 'Поведение, направленное на нарушение общественного правопорядка или комфорта других лиц. Бессмысленные или оскорбительные высказывания в сторону других членов экипажа.',
@@ -553,7 +525,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '102 — 502: Насилие', range: '1XX → 5XX', color: '#a371f7',
+    title: '102 — 502: Насилие', range: '1XX → 5XX', color: '#a371f7', shift: 0,
     articles: [
       { num: 102, name: 'Рукоприкладство', level: 1, punishment: 'до 5 мин',
         desc: 'Незначительное применение силы в отношении другого лица.',
@@ -573,7 +545,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '103 — 503: Неподчинение', range: '2XX → 5XX', color: '#d29922',
+    title: '103 — 503: Неподчинение', range: '2XX → 5XX', color: '#d29922', shift: 1,
     articles: [
       { num: 203, name: 'Невыполнение законного приказа', level: 2, punishment: '5-10 мин',
         desc: 'Игнорирование и/или неповиновение законному приказу, полученного от прямого Руководителя, Главы Персонала, Капитана, ЦК или СБ.',
@@ -590,7 +562,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '104 — 404: Контрабанда', range: '2XX → 4XX', color: '#f85149',
+    title: '104 — 404: Контрабанда', range: '2XX → 4XX', color: '#f85149', shift: 1,
     articles: [
       { num: 204, name: 'Ношение или использование ограниченных предметов/химикатов', level: 2, punishment: '5-10 мин',
         desc: 'Ношение, использование, хранение и передача/продажа ограниченных контрабандных предметов и веществ.',
@@ -604,7 +576,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '105 — 405: Нарушение личного пространства', range: '1XX → 4XX', color: '#e3b341',
+    title: '105 — 405: Нарушение личного пространства', range: '1XX → 4XX', color: '#e3b341', shift: 0,
     articles: [
       { num: 105, name: 'Преследование', level: 1, punishment: 'до 5 мин',
         desc: 'Поддержание нежеланного физического, психологического и просто контакта с другими членами экипажа.',
@@ -621,7 +593,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '106 — 506: Кража', range: '1XX → 5XX', color: '#3fb950',
+    title: '106 — 506: Кража', range: '1XX → 5XX', color: '#3fb950', shift: 1,
     articles: [
       { num: 206, name: 'Кража имущества отдела', level: 2, punishment: '5-10 мин',
         desc: 'Присвоение предметов отдела без разрешения или личных предметов члена экипажа, а также вымогательство денежных средств.',
@@ -638,7 +610,7 @@ const lawCategories = [
     ]
   },
   {
-    title: '107 — 407: Незаконное проникновение', range: '1XX → 4XX', color: '#58a6ff',
+    title: '107 — 407: Незаконное проникновение', range: '1XX → 4XX', color: '#58a6ff', shift: 0,
     articles: [
       { num: 107, name: 'Незаконное пребывание в отсеке', level: 1, punishment: 'до 5 мин',
         desc: 'Неавторизованное нахождение в отсеке.',
@@ -691,24 +663,48 @@ const enemies = [
 
 function renderCodes() {
   const container = document.getElementById('codesContainer');
-  container.innerHTML = codesData.map(code => {
-    const cl = codeLevels[code.key];
-    let html = `<div class="code-detail">
-      <div class="code-detail-header ${cl.color}">${cl.icon} ${code.title}</div>
-      <div class="code-detail-body">
-        <p>${code.desc}</p>`;
-    if (code.condition) html += `<p style="font-size:0.85rem;color:#f85149;margin-bottom:10px;"><strong>Условие:</strong> ${code.condition}</p>`;
-    html += `<div class="detail-grid">
-      <div class="detail-col"><h4>Регламент СБ</h4><ul>${code.sb.map(i => `<li>${i}</li>`).join('')}</ul></div>
-      <div class="detail-col"><h4>Регламент экипажа</h4><ul>${code.crew.map(i => `<li>${i}</li>`).join('')}</ul></div>
-    </div>`;
-    if (code.special) {
-      html += `<div class="special-rules"><h4>Особые положения</h4><ul>${code.special.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
-    }
-    html += `<p style="margin-top:12px;font-size:0.85rem;color:#8b949e;"><strong>Право объявления:</strong> ${code.auth.join(' • ')}</p>`;
-    html += `</div></div>`;
-    return html;
-  }).join('');
+  container.innerHTML = `
+    <div class="code-section">
+      <div class="code-section-header" style="background:rgba(88,166,255,0.1);border-left:4px solid var(--blue);">
+        <span>Уровни тревоги</span>
+        <span style="font-size:0.8rem;color:var(--blue);">Кликните для подробностей</span>
+      </div>
+      <div class="code-grid">
+        ${codesData.map((code, idx) => `
+          <div class="code-card" onclick="openCode(${idx})" title="${code.desc}">
+            <div class="code-icon">${codeLevels[code.key].icon}</div>
+            <div class="code-name" style="color:${getCodeColor(code.key)}">${code.title}</div>
+            <div class="code-desc">${code.short}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function getCodeColor(key) {
+  const map = { green: '#3fb950', blue: '#58a6ff', amber: '#d29922', red: '#f85149', gamma: '#ffa500', violet: '#a371f7', yellow: '#e3b341' };
+  return map[key];
+}
+
+function openCode(idx) {
+  const code = codesData[idx];
+  const cl = codeLevels[code.key];
+  document.getElementById('modalTitle').innerHTML = `${cl.icon} ${code.title}`;
+  document.getElementById('modalHeader').style.borderLeft = `4px solid ${getCodeColor(code.key)}`;
+  let body = `<p><strong>${code.short}</strong>. ${code.desc}</p>`;
+  if (code.condition) body += `<p style="color:#f85149"><strong>Условие:</strong> ${code.condition}</p>`;
+  body += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
+    <div><h4>Регламент СБ</h4><ul>${code.sb.map(i => `<li>${i}</li>`).join('')}</ul></div>
+    <div><h4>Регламент экипажа</h4><ul>${code.crew.map(i => `<li>${i}</li>`).join('')}</ul></div>
+  </div>`;
+  if (code.special) {
+    body += `<div style="margin-top:12px;padding:10px;background:rgba(248,81,73,0.1);border-radius:6px"><h4 style="color:#f85149">Особые положения</h4><ul>${code.special.map(i => `<li style="color:#f85149">${i}</li>`).join('')}</ul></div>`;
+  }
+  body += `<p style="margin-top:12px;font-size:0.85rem;color:#8b949e"><strong>Право объявления:</strong> ${code.auth.join(' • ')}</p>`;
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 function getThreatClass(key) {
@@ -752,26 +748,38 @@ function renderThreats() {
 
   document.getElementById('threatCount').textContent = `Найдено: ${data.length}`;
 
-  tbody.innerHTML = data.map(t => `
+  tbody.innerHTML = data.map((t, idx) => {
+    const originalIdx = threatsData.indexOf(t);
+    return `
     <tr class="${getThreatClass(t.confirmation)}">
+      <td>
+        <div class="threat-select">
+          <input type="checkbox" id="calc-${originalIdx}" onchange="updateCalculator()">
+          <select id="calc-status-${originalIdx}" onchange="updateCalculator()">
+            <option value="suspicion">Подозрение</option>
+            <option value="confirmation">Подтверждение</option>
+          </select>
+        </div>
+      </td>
       <td>${t.name}</td>
-      <td class="b">${getCodeBadge(t.suspicion)}</td>
-      <td class="r">${getCodeBadge(t.confirmation)}</td>
+      <td class="${codeLevels[t.suspicion].color}">${getCodeBadge(t.suspicion)}</td>
+      <td class="${codeLevels[t.confirmation].color}">${getCodeBadge(t.confirmation)}</td>
       <td>${'★'.repeat(t.danger)}${'☆'.repeat(5 - t.danger)}</td>
-      <td class="a">${getCodeBadge(t.after)}</td>
+      <td class="${codeLevels[t.after].color}">${getCodeBadge(t.after)}</td>
     </tr>
-  `).join('') || `<tr><td colspan="5" class="text-center text-muted">Ничего не найдено</td></tr>`;
+  `}).join('') || `<tr><td colspan="6" class="text-center text-muted">Ничего не найдено</td></tr>`;
 
   // Update sort icons
   document.querySelectorAll('#threatTable th').forEach(th => th.classList.remove('active-sort'));
   if (threatSort.field) {
-    const map = { name: 0, suspicion: 1, confirmation: 2, danger: 3, after: 4 };
+    const map = { name: 1, suspicion: 2, confirmation: 3, danger: 4, after: 5 };
     const th = document.querySelectorAll('#threatTable th')[map[threatSort.field]];
     if (th) {
       th.classList.add('active-sort');
       th.querySelector('.sort-icon').textContent = threatSort.dir === 1 ? '↑' : '↓';
     }
   }
+  updateCalculator();
 }
 
 function getDangerText(danger) {
@@ -786,22 +794,6 @@ function sortThreats(field) {
 }
 
 function filterThreats() { renderThreats(); }
-
-function renderCalculator() {
-  const grid = document.getElementById('calcGrid');
-  grid.innerHTML = threatsData.map((t, i) => `
-    <div class="calc-item" data-index="${i}">
-      <input type="checkbox" id="calc-${i}" onchange="updateCalculator()">
-      <label for="calc-${i}">${t.name}</label>
-      <div class="calc-select">
-        <select id="calc-status-${i}" onchange="updateCalculator()">
-          <option value="suspicion">Подозрение</option>
-          <option value="confirmation">Подтверждение</option>
-        </select>
-      </div>
-    </div>
-  `).join('');
-}
 
 function updateCalculator() {
   const selected = [];
@@ -818,18 +810,14 @@ function updateCalculator() {
     return;
   }
 
-  // If any confirmed red or gamma-level, use red. Otherwise use highest confirmation code.
   let highestCode = 'green';
   let reasons = [];
-  let amberCount = 0;
 
   selected.forEach(s => {
     const code = s.status === 'confirmation' ? s.confirmation : s.suspicion;
     if (codePriority[code] > codePriority[highestCode]) highestCode = code;
-    if (code === 'amber' || code === 'red') amberCount++;
   });
 
-  // Red escalation: 3+ amber/red confirmed threats
   const confirmedAmberRed = selected.filter(s => s.status === 'confirmation' && (s.confirmation === 'amber' || s.confirmation === 'red')).length;
   if (confirmedAmberRed >= 3) {
     highestCode = 'red';
@@ -842,16 +830,13 @@ function updateCalculator() {
     reasons.push(`${s.name} — ${label} (${codeLevels[code].name})`);
   });
 
-  const cl = codeLevels[highestCode];
-  document.getElementById('calcCode').className = `calc-code ${cl.color}`;
-  document.getElementById('calcCode').textContent = `${cl.icon} ${cl.name.toUpperCase()} КОД`;
-  document.getElementById('calcReason').textContent = reasons.join(' • ');
+  setCalcResult(highestCode, reasons.join(' • '));
 }
 
 function setCalcResult(code, reason) {
   const cl = codeLevels[code];
-  document.getElementById('calcCode').className = `calc-code ${cl.color}`;
-  document.getElementById('calcCode').textContent = `${cl.icon} ${cl.name.toUpperCase()} КОД`;
+  document.getElementById('calcCode').className = `threat-calc-code ${cl.color}`;
+  document.getElementById('calcCode').textContent = `${cl.icon} ${cl.name.toUpperCase()}`;
   document.getElementById('calcReason').textContent = reason;
 }
 
@@ -881,25 +866,37 @@ function setAllSuspicion() {
 
 function renderArticles() {
   const container = document.getElementById('articleContainer');
-  container.innerHTML = lawCategories.map(cat => `
+  container.innerHTML = lawCategories.map(cat => {
+    const cards = [];
+    // Add empty placeholder for shift
+    for (let i = 0; i < cat.shift; i++) {
+      cards.push(`<div class="art-card empty"><div class="art-num" style="color:#8b949e">—</div><div class="art-name">Нет<br><small style="color:#8b949e">1XX отсутствует</small></div></div>`);
+    }
+    cat.articles.forEach(a => {
+      cards.push(`
+        <div class="art-card art-l${a.level}" data-num="${a.num}" data-name="${a.name.toLowerCase()}" data-desc="${(a.desc + ' ' + a.items.join(' ')).toLowerCase()}" onclick="openArticle(${a.num})">
+          <div class="art-num">${a.num}</div>
+          <div class="art-name">${a.name}<br><small style="color:${getLevelColor(a.level)}">${a.punishment}</small></div>
+        </div>
+      `);
+    });
+    // Fill remaining slots up to 5
+    while (cards.length < 5) {
+      cards.push(`<div class="art-card empty"><div class="art-num" style="color:#8b949e">—</div><div class="art-name">Нет<br><small style="color:#8b949e">статья отсутствует</small></div></div>`);
+    }
+
+    return `
     <div class="article-section" data-category="${cat.title}">
       <div class="article-header" style="background:${cat.color}15;border-left:4px solid ${cat.color};">
         <span>${cat.title}</span>
         <span style="font-size:0.8rem;color:${cat.color};">${cat.range}</span>
       </div>
       <div class="article-body">
-        <div class="article-grid">
-          ${cat.articles.map(a => `
-            <div class="art-card art-l${a.level}" data-num="${a.num}" data-name="${a.name.toLowerCase()}" data-desc="${(a.desc + ' ' + a.items.join(' ')).toLowerCase()}" onclick="openArticle(${a.num})">
-              <div class="art-num">${a.num}</div>
-              <div class="art-name">${a.name}<br><small style="color:${getLevelColor(a.level)}">${a.punishment}</small></div>
-            </div>
-          `).join('')}
-          ${cat.articles.length < 5 ? '<div class="art-card" style="opacity:0.4"><div class="art-num">—</div><div class="art-name">Нет<br><small>статья отсутствует</small></div></div>'.repeat(5 - cat.articles.length) : ''}
-        </div>
+        <div class="article-grid">${cards.join('')}</div>
       </div>
     </div>
-  `).join('');
+    `;
+  }).join('');
   document.getElementById('articleCount').textContent = `Всего: ${lawCategories.reduce((s, c) => s + c.articles.length, 0)}`;
 }
 
@@ -951,9 +948,7 @@ function openArticle(num) {
   const article = lawCategories.flatMap(c => c.articles).find(a => a.num === num);
   if (!article) return;
 
-  const cl = codeLevels[Object.keys(codeLevels)[0]]; // placeholder
-  const colorClass = `art-l${article.level}`;
-  document.getElementById('modalTitle').innerHTML = `<span class="art-num ${colorClass.replace('art-l','')}" style="color:${getLevelColor(article.level)}">${article.num}</span> ${article.name}`;
+  document.getElementById('modalTitle').innerHTML = `<span style="color:${getLevelColor(article.level)};font-weight:700">${article.num}</span> ${article.name}`;
   document.getElementById('modalHeader').style.borderLeft = `4px solid ${getLevelColor(article.level)}`;
 
   let body = `<p><strong>Описание:</strong> ${article.desc}</p>`;
@@ -967,12 +962,6 @@ function openArticle(num) {
 function getLevelColorClass(level) {
   const map = { 1: 'g', 2: 'b', 3: 'a', 4: 'y', 5: 'r' };
   return map[level] || '';
-}
-
-function closeModal(e) {
-  if (e && e.target !== e.currentTarget && e.target.closest('.modal')) return;
-  document.getElementById('modalBackdrop').classList.remove('open');
-  document.body.style.overflow = '';
 }
 
 function renderModifiers() {
@@ -1014,14 +1003,12 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Load saved state
 if (localStorage.getItem('colors') === 'off') {
   document.body.classList.add('off');
   document.getElementById('colorToggle').checked = false;
 }
 
-// Smooth scroll + active nav
-const sections = ['codes', 'threats', 'calculator', 'articles', 'modifiers', 'roles', 'enemies'];
+const sections = ['codes', 'threats', 'articles', 'modifiers', 'roles', 'enemies'];
 function updateActiveNav() {
   const scroll = window.scrollY + 120;
   let active = 'codes';
@@ -1056,9 +1043,14 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
 
+function closeModal(e) {
+  if (e && e.target !== e.currentTarget && e.target.closest('.modal')) return;
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 renderCodes();
 renderThreats();
-renderCalculator();
 renderArticles();
 renderModifiers();
 renderRoles();
